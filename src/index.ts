@@ -1,7 +1,7 @@
-import { Gateway } from './gateway'
-import { Issue } from './issue'
+import { Redmine } from './gateways/redmine'
+import { Issue } from './models/issue'
 
 export {
-  Gateway,
+  Redmine,
   Issue
 }

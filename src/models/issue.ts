@@ -1,11 +1,11 @@
-import { Gateway } from './gateway'
+import { Redmine } from '~/gateways/redmine'
 
 export class Issue {
-  private static gateway: Gateway
+  private static redmine: Redmine
 
   public static async getChildren(parentId: number): Promise<any> {
-    if (!this.gateway) {
-      this.gateway = Gateway.instance
+    if (!this.redmine) {
+      this.redmine = Redmine.instance
     }
 
     const url = `/issues.json`
@@ -13,6 +13,6 @@ export class Issue {
       parent_id: parentId + ''
     }
 
-    return (await this.gateway.get(url, params))
+    return (await this.redmine.get(url, params))
   }
 }

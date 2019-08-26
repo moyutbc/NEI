@@ -1,14 +1,14 @@
 import $ = require('jquery');
 
-export class Gateway {
-  private static _instance: Gateway
+export class Redmine {
+  private static _instance: Redmine
   private static apiKey: string
 
   private constructor() {}
 
-  public static get instance(): Gateway {
+  public static get instance(): Redmine {
     if (!this._instance) {
-      this._instance = new Gateway();
+      this._instance = new Redmine();
     }
 
     return this._instance;
@@ -31,6 +31,6 @@ export class Gateway {
   }
 
   public async get(url: string, params?: { [s: string]: string }): Promise<any> {
-    return (await Gateway._get(url, params))
+    return (await Redmine._get(url, params))
   }
 }
