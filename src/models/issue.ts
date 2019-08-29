@@ -42,17 +42,6 @@ export class Issue extends Orm {
 
 
   public static async getChildren(parentId: number): Promise<any> {
-    if (!this.redmine) {
-      this.redmine = Redmine.instance
-    }
-
-    const url = `/issues.json`
-    const params = {
-      parent_id: parentId + ''
-    }
-
-    const res =  (await this.redmine.get(url, params))
-    return res.issues.map((elem) => new Issue(elem))
+    return await this.where({parent_id: parentId})
   }
-
 }
