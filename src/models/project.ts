@@ -1,6 +1,7 @@
 import { Dayjs } from 'dayjs';
+import { Orm } from '~/models/orm'
 
-export class Project {
+export class Project extends Orm {
   id: number
   name: string
   identifier: string
