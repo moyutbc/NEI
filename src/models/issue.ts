@@ -44,4 +44,8 @@ export class Issue extends Orm {
   public static async getChildren(parentId: number): Promise<any> {
     return await this.where({parent_id: parentId})
   }
+
+  public async getChildren(): Promise<any> {
+    return await Issue.where({parent_id: this.id})
+  }
 }
