@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel src/index.ts --global rmgw",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.ts --global rmgw"
   },
@@ -12,12 +13,14 @@
   "dependencies": {
     "@types/jquery": "^3.3.31",
     "@types/node": "^12.7.2",
+    "@types/vis": "^4.21.19",
     "dayjs": "^1.8.16",
     "http-server": "^0.11.1",
     "jquery": "^3.4.1",
     "parcel": "^1.12.3",
     "readme-md-generator": "^0.6.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "vis-timeline": "^5.1.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
@@ -28,7 +31,11 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./test/setup",
-    "moduleFileExtensions": [ "ts", "tsx", "js" ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
