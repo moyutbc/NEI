@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { DataSet, Timeline } from 'vis-timeline'
+import 'vis-timeline/dist/vis-timeline-graph2d.css'
 
 import { Page } from '~/types/index'
 import { Issue } from '~/models/issue'
@@ -13,8 +14,8 @@ export class IssuePage implements Page {
   constructor(issueId: number | string) {
     this.issue = new Issue({ id: Number(issueId) })
 
+    // div#timeline の作成
     const issueTree = $('#issue_tree')[0]
-
     const issues = issueTree.querySelector('#issue_tree > form > table')
     this.container = document.createElement('div')
     this.container.id = 'timeline'
@@ -32,12 +33,16 @@ export class IssuePage implements Page {
         end: child.due_date
       }
     })
-    this.items = new DataSet(data)
-    const timeline = new Timeline(this.container, this.items, this.options);
 
-    console.log('container', this.container)
-    console.log('items', this.items)
-    console.log('options', this.options)
+    this.items = new DataSet(data)
+
+    this.options = {
+      stack: true,
+      type: 'box',
+      zoomMin: 1000 * 60 * 60 * 24 // msec
+    }
+
+    const timeline = new Timeline(this.container, this.items, this.options);
   }
 
   public async update(): void {
