@@ -29,7 +29,7 @@ export class IssuePage implements Page {
       return {
         id: child.id,
         content: child.subject,
-        start: new Date(child.start_date),
+        start: new Date(child.start_date || child.due_date),
         end: child.due_date
       }
     })
