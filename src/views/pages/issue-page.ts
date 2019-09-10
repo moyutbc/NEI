@@ -21,14 +21,16 @@ export class IssuePage implements Page {
   public async create(): void {
     const this.subtasks = await this.issue.getChildren()
 
-    this.createTimeline()
-    this.destroySubtasksTable()
-    this.createSubtasksTable()
+    if (this.subtasks.length > 0) {
+      this.createTimeline()
+      this.destroySubtasksTable()
+      this.createSubtasksTable()
+    }
 
     Favorite.createAddToFavorite()
     Favorite.createFavorites()
   }
-
+  
   public createTimeline(): void {
     // div#timeline の作成
     const issueTree = $('#issue_tree')[0]
