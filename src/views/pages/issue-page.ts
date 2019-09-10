@@ -27,7 +27,7 @@ export class IssuePage implements Page {
       this.createSubtasksTable()
     }
 
-    Favorite.createAddToFavorite()
+    Favorite.createAddToFavorite('issues', this.issue)
     Favorite.createFavorites()
   }
   
