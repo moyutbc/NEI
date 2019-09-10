@@ -4,6 +4,7 @@ import 'vis-timeline/dist/vis-timeline-graph2d.css'
 
 import { Page } from '~/types/index'
 import { Issue } from '~/models/issue'
+import { Favorite } from '~/views/components/Favorite'
 
 export class IssuePage implements Page {
   private issue: Issue
