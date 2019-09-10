@@ -112,3 +112,5 @@ tags
 [._]*.un~
 
 
+# custome
+dist
