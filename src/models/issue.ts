@@ -28,6 +28,7 @@ export class Issue extends Orm {
     this.status          = obj.status
     this.priority        = obj.priority
     this.author          = obj.author
+    this.assigned_to     = obj.assigned_to || obj.author
     this.category        = obj.category
     this.subject         = obj.subject
     this.description     = obj.description
@@ -40,12 +41,16 @@ export class Issue extends Orm {
     this.updated_on      = obj.updated_on
   }
 
+  public static async where(conditions = {}): Promise<any> {
+    // issues must be ordered by id.
+    return (await super.where(conditions)).sort((a, b) => a.id - b.id)
+  }
 
   public static async getChildren(parentId: number): Promise<any> {
     return await this.where({parent_id: parentId})
   }
 
-  public async getChildren(): Promise<any> {
+  public async getChildren(): Promise<Array<this>> {
     return await Issue.where({parent_id: this.id})
   }
 }

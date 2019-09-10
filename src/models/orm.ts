@@ -36,17 +36,17 @@ export abstract class Orm {
     return (await this.redmine.get(url, params))
   }
 
-  static async all(params = {}): Array<this> {
+  static async all(params = {}): Promise<Array<this>> {
     return (await this.where({}))
   }
 
-  static async find(id: number, params = {}): this {
+  static async find(id: number, params = {}): Promise<this> {
     const url = this.getResourcesPath(id)
     const res = await this.get(url, params)
     return new this(res[this.getResourceName()])
   }
 
-  static async where(conditions = {}) {
+  static async where(conditions = {}): Promise<Array<this>> {
     let tmpConditions = { limit: 1, offset: 0 }
     Object.keys(conditions).forEach(key => tmpConditions[key] = conditions[key])
     const url = this.getResourcesPath()
