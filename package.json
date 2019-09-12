@@ -21,6 +21,7 @@
     "jquery-ui-dist": "^1.12.1",
     "parcel": "^1.12.3",
     "readme-md-generator": "^0.6.1",
+    "tippy.js": "^4.3.5",
     "typescript": "^3.5.3",
     "vis-timeline": "^5.1.0"
   },
