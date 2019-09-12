@@ -4,6 +4,10 @@ export class Redmine {
   private static _instance: Redmine
   private static apiKey: string
 
+  public static origin(): string {
+    return window.location.origin
+  }
+
   public static get instance(): Redmine {
     if (!this._instance) {
       this._instance = new Redmine()

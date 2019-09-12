@@ -54,4 +54,11 @@ export class Issue extends Orm {
   public async getChildren(): Promise<Array<this>> {
     return await Issue.where({ parent_id: this.id })
   }
+
+  public static bulkEditUrl(ids: Array<number | string>): string {
+    const resources = Issue.getResourcesName()
+    const params = ids.map(id => `ids[]=${id}`).join('&')
+    const uri = `/${resources}/bulk_edit?${params}`
+    return encodeURI(uri)
+  }
 }

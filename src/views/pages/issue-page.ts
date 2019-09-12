@@ -15,6 +15,8 @@ export class IssuePage implements Page {
   private items: DataSet
   private options: any = {}
 
+  private static RIGHT_BUTTON = 2
+
   constructor(issueId: number | string) {
     this.issue = new Issue({ id: Number(issueId) })
   }
@@ -93,6 +95,34 @@ export class IssuePage implements Page {
 
     const form = document.querySelector('#issue_tree > form')
     form.insertAdjacentHTML('beforeend', html)
+
+    document.querySelectorAll('table.rmgw tr').forEach((tr) => {
+      tr.onclick = () => {
+        const checkbox = tr.querySelector('input[type=checkbox]')
+        if (checkbox.checked) {
+          tr.classList.remove('context-menu-selection')
+        } else {
+          tr.classList.add('context-menu-selection')
+        }
+        checkbox.checked = !checkbox.checked
+      }
+    })
+
+    document.querySelector('table.rmgw').addEventListener('contextmenu', (e) => {
+    console.log(e)
+      if (e.button !== IssuePage.RIGHT_BUTTON) { return; }
+      e.preventDefault()
+
+      const ids = Array.from(document.querySelectorAll('.context-menu-selection')).filter(tr => {
+        return tr.querySelector('input[type=checkbox]').checked
+      }).map(tr => {
+        return tr.querySelector('input[type=checkbox]').value
+      })
+
+      if (ids.length > 0) {
+        window.location.href = Issue.bulkEditUrl(ids)
+      }
+    })
   }
 
   private destroySubtasksTable(): void {
