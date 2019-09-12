@@ -1,12 +1,11 @@
 import { Redmine } from '~/gateways/redmine'
-import { Pagination } from '~/models/pagination'
 
 export abstract class Orm {
   private static redmine: Redmine
   private static format = 'json'
 
   private static pluralize(noun: string) {
-    if ([/s$/, /x$/, /z$/, /sh$/, /ch$/].some((regex) => regex.test(noun))) {
+    if ([/s$/, /x$/, /z$/, /sh$/, /ch$/].some(regex => regex.test(noun))) {
       return `${noun}es`
     }
     if (/[^aiueo]y$/.test(noun)) {
@@ -25,19 +24,19 @@ export abstract class Orm {
 
   private static getResourcesPath(id?: number): string {
     return id
-           ? `/${this.getResourcesName()}/${id}.${this.format}`
-           : `/${this.getResourcesName()}.${this.format}`
+      ? `/${this.getResourcesName()}/${id}.${this.format}`
+      : `/${this.getResourcesName()}.${this.format}`
   }
 
   static async get(url: string, params = {}) {
     if (!this.redmine) {
       this.redmine = Redmine.instance
     }
-    return (await this.redmine.get(url, params))
+    return await this.redmine.get(url, params)
   }
 
   static async all(params = {}): Promise<Array<this>> {
-    return (await this.where({}))
+    return await this.where(params)
   }
 
   static async find(id: number, params = {}): Promise<this> {
@@ -47,8 +46,10 @@ export abstract class Orm {
   }
 
   static async where(conditions = {}): Promise<Array<this>> {
-    let tmpConditions = { limit: 1, offset: 0 }
-    Object.keys(conditions).forEach(key => tmpConditions[key] = conditions[key])
+    const tmpConditions = { limit: 1, offset: 0 }
+    Object.keys(conditions).forEach(
+      key => (tmpConditions[key] = conditions[key])
+    )
     const url = this.getResourcesPath()
     const results = []
 
@@ -59,12 +60,14 @@ export abstract class Orm {
 
     // 2ページ目以降を取得
     const pageCount = Math.ceil(res.total_count / res.limit)
-    const pageIndices = Array.from(new Array(pageCount)).map((_,i)=> i).splice(1)
+    const pageIndices = Array.from(new Array(pageCount))
+      .map((_, i) => i)
+      .splice(1)
     const promises = pageIndices.map(i => {
       tmpConditions.offset = i * res.limit
       return this.get(url, tmpConditions)
     })
-    const responses = await Promise.all(promises))
+    const responses = await Promise.all(promises)
 
     return responses.reduce((arr, res) => {
       const tmp = res[this.getResourcesName()].map(elem => new this(elem))

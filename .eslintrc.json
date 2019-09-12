@@ -15,5 +15,16 @@
     "sourceType": "module"
   },
   "rules": {
+    "@typescript-eslint/camelcase": [
+      "error", {
+        "properties": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error", {
+        "singleQuote": true,
+        "semi": false
+      }
+    ]
   }
 }
