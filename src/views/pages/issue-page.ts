@@ -7,6 +7,7 @@ import { Page } from '~/types/index'
 import { Issue } from '~/models/issue'
 import { Favorite } from '~/views/components/Favorite'
 import { Subject } from '~/views/components/Subject'
+import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 
 export class IssuePage implements Page {
   private issue: Issue
@@ -39,26 +40,10 @@ export class IssuePage implements Page {
     // div#timeline の作成
     const issueTree = $('#issue_tree')[0]
     const issues = issueTree.querySelector('#issue_tree > form > table')
-    this.container = document.createElement('div')
-    this.container.id = 'timeline'
-    issues.insertAdjacentElement('beforebegin', this.container)
 
-    // タイムラインの作成
-    const data = this.subtasks.map((child) => {
-      return {
-        id: child.id,
-        content: child.subject,
-        start: new Date(child.start_date || child.due_date),
-        end: child.due_date
-      }
-    })
-    this.items = new DataSet(data)
-    this.options = {
-      stack: true,
-      type: 'box',
-      zoomMin: 1000 * 60 * 60 * 24 // msec
-    }
-    const timeline = new Timeline(this.container, this.items, this.options);
+    const gantt = SubtaskGanttChart.create(this.subtasks)
+
+    issues.insertAdjacentElement('beforebegin', gantt)
   }
 
   private createSubtasksTable(): void {
