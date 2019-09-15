@@ -3,8 +3,10 @@ import 'vis-timeline/dist/vis-timeline-graph2d.css'
 
 import { Issue } from '~/models/issue'
 
-export class SubtaskGanttChart {
-  public static create(issues: Array<Issue>, id = 'timeline'): any {
+export class SubtaskGanttChart implements HTMLComponent {
+  private element: HTMLElement
+
+   constructor(issues: Array<Issue>, id = 'timeline') {
     // 要素の作成
     const container = document.createElement('div')
     const container.id = id
@@ -36,6 +38,10 @@ export class SubtaskGanttChart {
     timeline.setGroups(groups);
     timeline.setItems(items);
 
-    return container;
+    this.element = container;
+  }
+
+  public getElement(): HTMLElement {
+    return this.element;
   }
 }

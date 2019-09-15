@@ -52,12 +52,10 @@ export class IssuePage implements Page {
   }
   
   public createTimeline(): void {
-    // div#timeline の作成
+    const gantt = new SubtaskGanttChart(this.subtasks).getElement()
+
     const issueTree = document.querySelector('#issue_tree')
     const issues = issueTree.querySelector('#issue_tree > form > table')
-
-    const gantt = SubtaskGanttChart.create(this.subtasks)
-
     issues.insertAdjacentElement('beforebegin', gantt)
   }
 
