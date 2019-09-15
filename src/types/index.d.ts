@@ -9,5 +9,5 @@ export interface HTMLComponent {
 }
 
 export interface FavItem {
-  public favItemize(): { resource: any; href: string; innerText: string }
+  public favItemize(): { resource: string; href: string; innerText: string }
 }

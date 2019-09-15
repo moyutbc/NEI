@@ -16,7 +16,7 @@ export class Redmine {
 
   private static async fetchApiKey(): Promise<string> {
     const res = await (await fetch('/my/api_key')).text()
-    const parser = new DOMParser();
+    const parser = new DOMParser()
     const dom = parser.parseFromString(res, 'text/html')
     return dom.querySelector('#content > div.box > pre').textContent
   }

@@ -6,7 +6,7 @@ import { Issue } from '~/models/issue'
 export class SubtaskGanttChart implements HTMLComponent {
   private element: HTMLElement
 
-   constructor(issues: Array<Issue>, id = 'timeline') {
+  constructor(issues: Array<Issue>, id = 'timeline') {
     // 要素の作成
     const container = document.createElement('div')
     const container.id = id
