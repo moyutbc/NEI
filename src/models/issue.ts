@@ -2,7 +2,7 @@ import { Dayjs } from 'dayjs'
 import { Project } from '~/models/project'
 import { Orm } from '~/models/orm'
 
-export class Issue extends Orm {
+export class Issue extends Orm implements FavItem {
   id: number
   project: Project
   tracker: any
@@ -60,5 +60,13 @@ export class Issue extends Orm {
     const params = ids.map(id => `ids[]=${id}`).join('&')
     const uri = `/${resources}/bulk_edit?${params}`
     return encodeURI(uri)
+  }
+
+  public favItemize(): { resource: string; href: string; innerText: string } {
+    return {
+      resource: Issue.name,
+      href: Issue.getUrl(this.id),
+      innerText: `#${this.id} ${this.subject}`
+    }
   }
 }

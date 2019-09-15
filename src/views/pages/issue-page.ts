@@ -5,7 +5,10 @@ import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
 
 import { Page } from '~/types/index'
 import { Issue } from '~/models/issue'
-import { Favorite } from '~/views/components/Favorite'
+
+import { FavButton } from '~/views/components/fav-button'
+import { FavMenu } from '~/views/components/fav-menu'
+
 import { Subject } from '~/views/components/Subject'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 
@@ -19,7 +22,10 @@ export class IssuePage implements Page {
   private static RIGHT_BUTTON = 2
 
   constructor(issueId: number | string) {
-    this.issue = new Issue({ id: Number(issueId) })
+    this.issue = new Issue({
+      id: Number(issueId),
+      subject: document.querySelector('#content .subject h3').innerText
+    })
   }
   
   public async create(): void {
@@ -31,9 +37,19 @@ export class IssuePage implements Page {
       this.createSubtasksTable()
     }
 
-    Favorite.createAddToFavorite('issues', this.issue)
-    Favorite.createFavorites()
     Subject.setup()
+
+    // お気に入りボタン
+    const favButton = (new FavButton(this.issue)).getElement()
+    const contextualMenu = document.querySelector('#content .contextual')
+    contextualMenu.appendChild(favButton)
+
+    // お気に入りメニュー
+    const favMenu = new FavMenu().getElement()
+    const li = document.createElement("li");
+    li.appendChild(favMenu);
+    const topMenu = document.querySelector("#top-menu > ul");
+    topMenu.appendChild(li);
   }
   
   public createTimeline(): void {

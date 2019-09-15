@@ -28,6 +28,14 @@ export abstract class Orm {
       : `/${this.getResourcesName()}.${this.format}`
   }
 
+  public static getUrl(id?: number | string): string {
+    let url = '/' + this.getResourcesName()
+    if (id) {
+      url += '/' + id
+    }
+    return url
+  }
+
   static async get(url: string, params = {}) {
     if (!this.redmine) {
       this.redmine = Redmine.instance
