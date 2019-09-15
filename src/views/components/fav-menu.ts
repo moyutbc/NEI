@@ -1,7 +1,6 @@
 import tippy from "tippy.js";
 import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
 
-import { HTMLComponent } from '~/types/index.d';
 import { Favorite } from '~/views/components/favorite';
 
 export class FavMenu implements HTMLComponent {

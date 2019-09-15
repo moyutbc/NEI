@@ -1,4 +1,3 @@
-import { HTMLComponent } from '~/types/index.d';
 import { Favorite } from '~/views/components/favorite';
 
 export class FavButton implements HTMLComponent {
