@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import { DataSet, Timeline } from 'vis-timeline'
 import 'vis-timeline/dist/vis-timeline-graph2d.css'
 import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
@@ -54,7 +53,7 @@ export class IssuePage implements Page {
   
   public createTimeline(): void {
     // div#timeline の作成
-    const issueTree = $('#issue_tree')[0]
+    const issueTree = document.querySelector('#issue_tree')
     const issues = issueTree.querySelector('#issue_tree > form > table')
 
     const gantt = SubtaskGanttChart.create(this.subtasks)

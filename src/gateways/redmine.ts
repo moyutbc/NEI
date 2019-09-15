@@ -1,5 +1,3 @@
-import $ = require('jquery')
-
 export class Redmine {
   private static _instance: Redmine
   private static apiKey: string
@@ -17,10 +15,10 @@ export class Redmine {
   }
 
   private static async fetchApiKey(): Promise<string> {
-    const res = await $.get('/my/api_key')
-    return $('#content > div.box > pre', $(res))
-      .first()
-      .text()
+    const res = await (await fetch('/my/api_key')).text()
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(res, 'text/html')
+    return dom.querySelector('#content > div.box > pre').textContent
   }
 
   private static async _get(
