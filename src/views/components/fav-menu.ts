@@ -33,19 +33,32 @@ export class FavMenu implements HTMLComponent {
   private showHook(instance): void {
     const favs = Favorite.list()
 
-    const menu = Hogan.compile(`
+    favs.forEach(fav => fav.stringify = JSON.stringify(fav))
+
+    let menu = Hogan.compile(`
       <div>
         Issues
         <ul>
           {{#issues}}
           <li>
             <a href="{{ href }}">{{ innerText }}</a>
+            <a hraf="javascript:void(0);" class="icon icon-del" data-stringify="{{ stringify }}"></a>
           </li>
           {{/issues}}
         </ul>
       </div>
     `).render({
       issues: favs
+    })
+
+    menu = new DOMParser().parseFromString(menu, 'text/html').querySelector('div')
+
+    menu.querySelectorAll('a.icon.icon-del').forEach(el => {
+      el.onclick = () => {
+        const favItem = JSON.parse(el.getAttribute('data-stringify'))
+        Favorite.remove(favItem)
+        this.showHook(instance)
+      }
     })
 
     instance.setContent(menu)

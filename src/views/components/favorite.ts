@@ -16,15 +16,13 @@ export class Favorite {
     localStorage.setItem(Favorite.KEY, JSON.stringify(tmpLocalStorage));
   }
 
-  public static reomove(item: FavItem): void {
-    const favItemized = item.favItemize()
-
+  public static remove(item: FavItem): void {
     const tmpLocalStorage = JSON.parse(localStorage.getItem(Favorite.KEY));
     if (!tmpLocalStorage) return;
     if (!tmpLocalStorage.favs) return;
 
-    tmpLocalStorage = tmpLocalStorage.favs.filter(fav => {
-      return fav.href !== favItemized.href;
+    tmpLocalStorage.favs = tmpLocalStorage.favs.filter(fav => {
+      return fav.href !== item.href;
     })
 
     localStorage.setItem(Favorite.KEY, JSON.stringify(tmpLocalStorage));
@@ -32,6 +30,6 @@ export class Favorite {
 
   public static list(): any {
     const tmpLocalStorage = JSON.parse(localStorage.getItem(Favorite.KEY));
-    return tmpLocalStorage ? tmpLocalStorage.favs : []
+    return tmpLocalStorage && tmpLocalStorage.favs ? tmpLocalStorage.favs : []
   }
 }
