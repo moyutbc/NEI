@@ -1,4 +1,5 @@
 import tippy from "tippy.js";
+import 'tippy.js/themes/light-border'
 import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
 
 import { Favorite } from '~/views/components/favorite';
