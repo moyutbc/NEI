@@ -21,6 +21,7 @@
     "readme-md-generator": "^0.6.1",
     "tippy.js": "^4.3.5",
     "typescript": "^3.5.3",
+    "underscore": "^1.9.1",
     "vis-timeline": "^5.1.0"
   },
   "devDependencies": {
