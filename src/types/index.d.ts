@@ -1,6 +1,5 @@
 export interface Page {
   create(): void
-  update(): void
 }
 
 export interface HTMLComponent {
