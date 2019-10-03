@@ -54,7 +54,7 @@ export abstract class Orm {
   }
 
   static async where(conditions = {}): Promise<Array<this>> {
-    const tmpConditions = { limit: 1, offset: 0 }
+    const tmpConditions = { limit: 100, offset: 0 }
     Object.keys(conditions).forEach(
       key => (tmpConditions[key] = conditions[key])
     )
