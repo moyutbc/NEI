@@ -6,7 +6,7 @@ export class HomePage implements Page {
       node: document.getElementById("content"),
       view: () => h(
         "h1", {}, [
-          "Thanks for using rmgw!😄",
+          "Thanks for using NEI! 😄",
         ]
       )
     })

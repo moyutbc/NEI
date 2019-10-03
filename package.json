@@ -1,12 +1,12 @@
 {
-  "name": "rmgw",
+  "name": "NEI",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.ts --global rmgw",
+    "dev": "parcel src/index.ts --global NEI",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.ts --global rmgw --out-dir=build --no-minify",
+    "build": "parcel build src/index.ts --global NEI --out-dir=build --no-minify",
     "eslint-fix": "eslint --fix src/**/*.ts"
   },
   "author": "",

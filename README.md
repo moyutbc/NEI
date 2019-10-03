@@ -1,7 +1,7 @@
-# Welcome to rmgw 👋
+# Welcome to NotEnoughIssues 👋
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 
-> Redmine REST API client library
+> Extend your Redmine
 
 ## Install
 
