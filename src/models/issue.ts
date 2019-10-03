@@ -48,11 +48,11 @@ export class Issue extends Orm implements FavItem {
   }
 
   public static async getChildren(parentId: number): Promise<any> {
-    return await this.where({ parent_id: parentId })
+    return await this.where({ parent_id: parentId, status_id: '*' })
   }
 
   public async getChildren(): Promise<Array<this>> {
-    return await Issue.where({ parent_id: this.id })
+    return await Issue.getChildren(this.id)
   }
 
   public static bulkEditUrl(ids: Array<number | string>): string {
