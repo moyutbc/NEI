@@ -17,6 +17,7 @@
     "@types/node": "^12.7.2",
     "@types/vis": "^4.21.19",
     "dayjs": "^1.8.16",
+    "element-ui": "^2.12.0",
     "hogan.js": "^3.0.2",
     "http-server": "^0.11.1",
     "parcel": "^1.12.3",

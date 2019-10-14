@@ -10,7 +10,9 @@ import { FavMenu } from '~/views/components/fav-menu'
 
 import { Subject } from '~/views/components/Subject'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
-import { SubtaskTable } from '~/views/components/subtask-table'
+// import { SubtaskTable } from '~/views/components/subtask-table'
+
+import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 
 export class IssuePage implements Page {
   private issue: Issue
@@ -30,9 +32,11 @@ export class IssuePage implements Page {
     const this.subtasks = await this.issue.getChildren()
 
     if (this.subtasks.length > 0) {
-      this.createTimeline()
-      this.destroySubtasksTable()
-      this.createSubtasksTable()
+      // this.createTimeline()
+      // this.destroySubtasksTable()
+      // this.createSubtasksTable()
+
+      new SubtaskTable({ el: '#relations' })
     }
 
     Subject.setup()
