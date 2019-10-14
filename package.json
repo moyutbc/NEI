@@ -46,7 +46,9 @@
     "vue-template-compiler": "^2.6.10"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup",
+    "setupFilesAfterEnv": [
+      "./test/setup"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
