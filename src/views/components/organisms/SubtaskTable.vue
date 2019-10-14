@@ -5,7 +5,15 @@
     :data="issues"
     :stripe="true"
     size="medium"
+    ref="subtaskTable"
+    @selection-change="selectionChangeHandler"
+    @row-click="rowClickHandler"
+    @row-contextmenu="goBulkEdit"
     >
+    <el-table-column
+      type="selection"
+      :min-width="5" >
+    </el-table-column>
     <el-table-column
       prop="id"
       label="Id"
@@ -19,7 +27,7 @@
       prop="subject"
       label="Subject"
       sortable
-      :min-width="45" >
+      :min-width="35" >
       <template slot-scope="scope">
         <a :href="`/issues/${scope.row.id}`">{{ scope.row.subject }}</a>
       </template>
@@ -57,9 +65,30 @@ Vue.use(TableColumn)
 
 import _ from 'underscore/underscore-min.js';
 
+import { Issue } from '~/models'
+
 @Component
 export default class SubtaskTable extends Vue {
-  issues: Array<any>
+  issues: Array<Issue> = []
+  lastSelection: Array<Issue> = []
+  dialogVisible: boolean = false
+
+  private selectionChangeHandler(selection) {
+    this.lastSelection = selection
+  }
+
+  private rowClickHandler(row) {
+    this.$refs.subtaskTable.toggleRowSelection(row)
+  }
+
+  private goBulkEdit(row, column, event) {
+    event.preventDefault()
+
+    const ids = this.lastSelection.map(el => el.id)
+    if (ids.length > 0) {
+      window.location.href = Issue.bulkEditUrl(ids)
+    }
+  }
 
   private statusFilter(): Array<{text: string, value: string|number}> {
     const statuses = this.issues.map(issue => ({
