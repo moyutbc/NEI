@@ -10,7 +10,7 @@ import { FavMenu } from '~/views/components/fav-menu'
 
 import { Subject } from '~/views/components/Subject'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
-// import { SubtaskTable } from '~/views/components/subtask-table'
+import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 
@@ -33,8 +33,8 @@ export class IssuePage implements Page {
 
     if (this.subtasks.length > 0) {
       // this.createTimeline()
-      // this.destroySubtasksTable()
-      // this.createSubtasksTable()
+      this.destroySubtasksTable()
+      this.createSubtasksTable()
 
       const subtaskTable = new SubtaskTable({
         el: '#relations',
@@ -59,7 +59,7 @@ export class IssuePage implements Page {
   }
 
   private createSubtasksTable(): void {
-    // const table = new SubtaskTable(this.subtasks).getElement()
+    const table = new SimpleSubtaskTable(this.subtasks).getElement()
 
     const form = document.querySelector('#issue_tree > form')
     form.insertAdjacentElement('beforeend', table)

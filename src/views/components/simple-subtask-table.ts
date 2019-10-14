@@ -5,7 +5,7 @@ import _ from 'underscore/underscore-min.js';
 import { ClickEventButton } from
 import { Issue } from '~/models/issue'
 
-export class SubtaskTable implements HTMLComponent {
+export class SimpleSubtaskTable implements HTMLComponent {
   private element: HTMLElement
 
   constructor(issues: Array<Issue>, id = 'timeline') {
