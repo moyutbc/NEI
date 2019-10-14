@@ -10,7 +10,7 @@ export class SubtaskTable implements HTMLComponent {
 
   constructor(issues: Array<Issue>, id = 'timeline') {
     const html = Hogan.compile(`
-      <table class="NEI list">
+      <table class="momiji list">
         <thead>
           <tr>
             <th>Subject</th>
@@ -114,7 +114,7 @@ export class SubtaskTable implements HTMLComponent {
       const displayStatusIds = inputs.map(el => el.getAttribute('data-status-id'))
 
       // 全部非表示
-      const trs = Array.from(table.querySelectorAll('table.NEI tbody tr'))
+      const trs = Array.from(table.querySelectorAll('table.momiji tbody tr'))
       trs.forEach(el => el.style.display = 'none')
 
       // 選択された項目のみを表示

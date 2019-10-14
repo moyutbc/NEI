@@ -1,14 +1,14 @@
 {
-  "name": "NEI",
+  "name": "momiji",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.ts --global NEI",
+    "dev": "parcel src/index.ts --global momiji",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build-dev && npm run build-prod",
-    "build-dev": "parcel build src/index.ts --global NEI --out-dir=build/dev --no-minify",
-    "build-prod": "parcel build src/index.ts --global NEI --out-dir=build/prod",
+    "build-dev": "parcel build src/index.ts --global momiji --out-dir=build/dev --no-minify",
+    "build-prod": "parcel build src/index.ts --global momiji --out-dir=build/prod",
     "eslint-fix": "eslint --fix src/**/*.ts"
   },
   "author": "",

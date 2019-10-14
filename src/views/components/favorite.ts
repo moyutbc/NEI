@@ -1,8 +1,8 @@
 import { FavItem } from "~/types/index";
 
-// NEI = { favs: [] }
+// momiji = { favs: [] }
 export class Favorite {
-  private static KEY = "NEI"
+  private static KEY = "momiji"
 
   public static add(item: FavItem): void {
     const favItemized = item.favItemize()
