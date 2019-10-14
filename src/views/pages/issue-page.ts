@@ -36,7 +36,12 @@ export class IssuePage implements Page {
       // this.destroySubtasksTable()
       // this.createSubtasksTable()
 
-      new SubtaskTable({ el: '#relations' })
+      const subtaskTable = new SubtaskTable({
+        el: '#relations',
+        data: {
+          issues: this.subtasks
+        }
+      })
     }
 
     Subject.setup()
@@ -54,7 +59,7 @@ export class IssuePage implements Page {
   }
 
   private createSubtasksTable(): void {
-    const table = new SubtaskTable(this.subtasks).getElement()
+    // const table = new SubtaskTable(this.subtasks).getElement()
 
     const form = document.querySelector('#issue_tree > form')
     form.insertAdjacentElement('beforeend', table)
