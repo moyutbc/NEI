@@ -10,7 +10,7 @@
       prop="id"
       label="Id"
       sortable
-      :min-width="15" >
+      :min-width="10" >
       <template slot-scope="scope">
         <a :href="`/issues/${scope.row.id}`">{{ scope.row.id }}</a>
       </template>
@@ -19,7 +19,7 @@
       prop="subject"
       label="Subject"
       sortable
-      :min-width="40" >
+      :min-width="45" >
       <template slot-scope="scope">
         <a :href="`/issues/${scope.row.id}`">{{ scope.row.subject }}</a>
       </template>
@@ -28,6 +28,7 @@
       prop="status.name"
       label="Status"
       :filters="statusFilter()"
+      :filter-method="statusFilterMethod"
       sortable
       :min-width="15" >
     </el-table-column>
@@ -41,6 +42,7 @@
       prop="due_date"
       label="Due date"
       :filters="dueDateFilter()"
+      :filter-method="dueDateFilterMethod"
       sortable
       :min-width="15" >
     </el-table-column>
@@ -59,7 +61,7 @@ import _ from 'underscore/underscore-min.js';
 export default class SubtaskTable extends Vue {
   issues: Array<any>
 
-  statusFilter(): Array<{text: string, value: string|number}> {
+  private statusFilter(): Array<{text: string, value: string|number}> {
     const statuses = this.issues.map(issue => ({
       value: issue.status.id,
       text: issue.status.name
@@ -68,13 +70,21 @@ export default class SubtaskTable extends Vue {
     return _.uniq(statuses, 'value')
   }
 
-  dueDateFilter(): Array<{text: string, value: string}> {
+  private dueDateFilter(): Array<{text: string, value: string}> {
     const statuses = this.issues.map(issue => ({
       value: issue.due_date,
       text: issue.due_date
     }))
 
     return _.uniq(statuses, 'value')
+  }
+
+  private statusFilterMethod(value, row, column) {
+    return value === row.status.id
+  }
+
+  private dueDateFilterMethod(value, row, column) {
+    return value === row.due_date
   }
 }
 </script>
