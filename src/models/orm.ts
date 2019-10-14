@@ -15,7 +15,12 @@ export abstract class Orm {
   }
 
   private static getResourceName() {
-    return this.name.toLowerCase()
+    return this.name
+      .replace(/([A-Z])/g, ' $1')
+      .split(' ')
+      .filter(el => el.length > 0)
+      .map(el => el.toLowerCase())
+      .join('_')
   }
 
   public static getResourcesName() {
@@ -65,6 +70,11 @@ export abstract class Orm {
     const res = await this.get(url, tmpConditions)
     const tmp = res[this.getResourcesName()].map(elem => new this(elem))
     results.push(...tmp)
+
+    // ページング未対応APIの場合
+    if (!res.total_count || !res.limit) {
+      return res[this.getResourcesName()]
+    }
 
     // 2ページ目以降を取得
     const pageCount = Math.ceil(res.total_count / res.limit)
