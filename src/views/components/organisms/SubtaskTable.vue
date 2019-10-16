@@ -4,7 +4,7 @@
     class-name="list"
     :data="issues"
     :stripe="true"
-    size="medium"
+    size="mini"
     ref="subtaskTable"
     @selection-change="selectionChangeHandler"
     @row-click="rowClickHandler"
@@ -70,8 +70,47 @@ import { Issue } from '~/models'
 @Component
 export default class SubtaskTable extends Vue {
   issues: Array<Issue> = []
+  issueStatuses: Array<IssueStatus> = []
   lastSelection: Array<Issue> = []
   dialogVisible: boolean = false
+
+  mounted() {
+    // openのチケットだけ表示
+    this.setFilterValues('status.name', this.openStatusValues())
+  }
+
+  /**
+   * チケットのクローズ状態を表すステータスのidを返却する。
+   *
+   * @return {Array<number>}
+   */
+  private openStatusValues(): Array<number> {
+    return this.issueStatuses
+      .filter(status => !status.is_closed)
+      .map(status => status.id)
+  }
+
+  /**
+   * フィルタの値を変更する。
+   *
+   * @param {string} columnProp カラム名
+   * @param {Array<number>} values 選択状態にする値
+   */
+  private setFilterValues(columnProp: string, values: Array<number>) {
+    const subtaskTable = this.$refs.subtaskTable
+    if (!subtaskTable) { return; }
+    console.log(subtaskTable)
+
+    const column = subtaskTable.columns.find(col => col.property === columnProp);
+    if (!column) { return; }
+
+    subtaskTable.store.commit('filterChange', {
+      column: column,
+      values: values,
+    });
+
+    subtaskTable.store.updateAllSelected();
+  }
 
   private selectionChangeHandler(selection) {
     this.lastSelection = selection

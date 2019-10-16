@@ -3,7 +3,7 @@ import 'vis-timeline/dist/vis-timeline-graph2d.css'
 import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
 
 import { Page } from '~/types/index'
-import { Issue } from '~/models/issue'
+import { Issue, IssueStatus } from '~/models'
 
 import { FavButton } from '~/views/components/fav-button'
 import { FavMenu } from '~/views/components/fav-menu'
@@ -30,6 +30,7 @@ export class IssuePage implements Page {
   
   public async create(): void {
     const this.subtasks = await this.issue.getChildren()
+    const issueStatuses = await IssueStatus.all()
 
     if (this.subtasks.length > 0) {
       // this.createTimeline()
@@ -39,7 +40,8 @@ export class IssuePage implements Page {
       const subtaskTable = new SubtaskTable({
         el: '#relations',
         data: {
-          issues: this.subtasks
+          issues: this.subtasks,
+          issueStatuses: issueStatuses
         }
       })
     }
