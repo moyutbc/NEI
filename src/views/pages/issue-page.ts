@@ -14,6 +14,9 @@ import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 
+// import ExecuteButton from '~/views/components/molecules/ExecuteButton'
+import ExecuteForm from '~/views/components/molecules/ExecuteForm'
+
 export class IssuePage implements Page {
   private issue: Issue
   private subtasks: Array<Issue>
@@ -26,6 +29,12 @@ export class IssuePage implements Page {
       id: Number(issueId),
       subject: document.querySelector('#content .subject h3').innerText
     })
+
+    // execute-buttons
+    const div = document.createElement('div')
+    div.id = 'execute-buttons'
+    const sidebar = document.querySelector('#sidebar')
+    sidebar.insertAdjacentElement('beforeend', div)
   }
   
   public async create(): void {
@@ -48,8 +57,12 @@ export class IssuePage implements Page {
 
     Subject.setup()
 
-    this.createFavMenu()
-    this.createFavButton()
+    // this.createFavMenu()
+    // this.createFavButton()
+
+    const executeForm = new ExecuteForm({
+      el: '#execute-buttons'
+    })
   }
   
   private createTimeline(): void {
