@@ -116068,10 +116068,15 @@ function () {
 
   LocalStore.get = function (keyStr) {
     var keys = keyStr.split('.');
-    var tmpLocalStorage = JSON.parse(localStorage.getItem(LocalStore.KEY));
+    var tmpLocalStorage = JSON.parse(localStorage.getItem(LocalStore.KEY)) || {};
 
     while (keys.length > 0) {
       var key = keys.shift();
+
+      if (!tmpLocalStorage[key]) {
+        return null;
+      }
+
       tmpLocalStorage = tmpLocalStorage[key];
     }
 
@@ -116161,8 +116166,10 @@ var vue_property_decorator_1 = require("vue-property-decorator");
 var element_ui_1 = require("element-ui");
 
 vue_property_decorator_1.Vue.use(element_ui_1.Button);
+vue_property_decorator_1.Vue.use(element_ui_1.Col);
 vue_property_decorator_1.Vue.use(element_ui_1.Form);
 vue_property_decorator_1.Vue.use(element_ui_1.Input);
+vue_property_decorator_1.Vue.use(element_ui_1.Row);
 
 var local_store_1 = require("~/utilities/local-store");
 
@@ -116218,7 +116225,7 @@ exports.default = ExecuteForm;
     
         /* template */
         Object.assign($ee322a, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{attrs:{"model":_vm.form}},[_c('el-input',{attrs:{"type":"textarea"},model:{value:(_vm.form.contents),callback:function ($$v) {_vm.$set(_vm.form, "contents", $$v)},expression:"form.contents"}}),_vm._v(" "),_c('el-button',{on:{"click":_vm.save}},[_vm._v("Save")]),_vm._v(" "),_c('el-button',{on:{"click":_vm.load}},[_vm._v("Load")]),_vm._v(" "),_c('el-button',{on:{"click":_vm.execute}},[_vm._v("Execute")])],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{attrs:{"model":_vm.form}},[_c('el-input',{attrs:{"type":"textarea","placeholder":"任意のJavaScriptを実行"},model:{value:(_vm.form.contents),callback:function ($$v) {_vm.$set(_vm.form, "contents", $$v)},expression:"form.contents"}}),_vm._v(" "),_c('el-row',[_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.save}},[_vm._v("Save")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.load}},[_vm._v("Load")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.execute}},[_vm._v("Execute")])],1)],1)],1)}
 var staticRenderFns = []
 
           return {
