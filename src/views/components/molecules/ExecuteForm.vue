@@ -5,18 +5,22 @@
       placeholder="任意のJavaScriptを実行"
       v-model="form.contents">
     </el-input>
-    <el-button @click="save">Save</el-button>
-    <el-button @click="load">Load</el-button>
-    <el-button @click="execute">Execute</el-button>
+    <el-row>
+      <el-col :span="8"><el-button style="width: 100%;" @click="save">Save</el-button></el-col>
+      <el-col :span="8"><el-button style="width: 100%;" @click="load">Load</el-button></el-col>
+      <el-col :span="8"><el-button style="width: 100%;" @click="execute">Execute</el-button></el-col>
+    </el-row>
   </el-form>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Button, Form, Input } from 'element-ui';
+import { Button, Col, Form, Input, Row } from 'element-ui';
 Vue.use(Button)
+Vue.use(Col)
 Vue.use(Form)
 Vue.use(Input)
+Vue.use(Row)
 
 import { LocalStore } from '~/utilities/local-store';
 
