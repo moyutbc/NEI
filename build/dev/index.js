@@ -995,7 +995,130 @@ function (_super) {
 }(orm_1.Orm);
 
 exports.Issue = Issue;
-},{"~/models/orm":"R9da"}],"ixzE":[function(require,module,exports) {
+},{"~/models/orm":"R9da"}],"XcyJ":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var orm_1 = require("~/models/orm");
+
+var IssueStatus =
+/** @class */
+function (_super) {
+  __extends(IssueStatus, _super);
+
+  function IssueStatus() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return IssueStatus;
+}(orm_1.Orm);
+
+exports.IssueStatus = IssueStatus;
+},{"~/models/orm":"R9da"}],"Go0Q":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var orm_1 = require("~/models/orm");
+
+var Project =
+/** @class */
+function (_super) {
+  __extends(Project, _super);
+
+  function Project(obj) {
+    var _this = _super.call(this) || this;
+
+    _this.id = obj.id;
+    _this.name = obj.name;
+    _this.identifier = obj.identifier;
+    _this.description = obj.description;
+    _this.created_on = obj.created_on;
+    _this.updated_on = obj.updated_on;
+    _this.is_public = obj.is_public;
+    return _this;
+  }
+
+  return Project;
+}(orm_1.Orm);
+
+exports.Project = Project;
+},{"~/models/orm":"R9da"}],"LJBG":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var issue_1 = require("~/models/issue");
+
+exports.Issue = issue_1.Issue;
+
+var issue_status_1 = require("~/models/issue-status");
+
+exports.IssueStatus = issue_status_1.IssueStatus;
+
+var project_1 = require("~/models/project");
+
+exports.Project = project_1.Project;
+},{"~/models/issue":"yCRT","~/models/issue-status":"XcyJ","~/models/project":"Go0Q"}],"ixzE":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -115729,130 +115852,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 /***/ })
 /******/ ])["default"];
-},{"element-ui/lib/utils/date-util":"VzUj","element-ui/lib/utils/dom":"1SSF","element-ui/lib/utils/util":"M+Im","element-ui/lib/mixins/emitter":"ASef","element-ui/lib/mixins/locale":"X3QK","element-ui/lib/utils/vue-popper":"2kJb","vue":"QPfz","element-ui/lib/utils/merge":"uLxC","element-ui/lib/mixins/migrating":"DxTd","element-ui/lib/input":"AQhJ","element-ui/lib/utils/clickoutside":"c3dP","element-ui/lib/utils/resize-event":"UjVH","element-ui/lib/utils/popup":"RfNd","throttle-debounce/debounce":"J3wN","element-ui/lib/checkbox":"JZqS","element-ui/lib/locale":"UOcq","element-ui/lib/scrollbar":"QvAt","element-ui/lib/button":"vtgS","element-ui/lib/utils/types":"U9c6","element-ui/lib/utils/shared":"UkBB","element-ui/lib/utils/date":"boTQ","element-ui/lib/transitions/collapse-transition":"Js11","element-ui/lib/mixins/focus":"U6Ly","element-ui/lib/utils/vdom":"94jR","babel-helper-vue-jsx-merge-props":"Gsyi","throttle-debounce/throttle":"d9oq","element-ui/lib/tooltip":"O7cW","element-ui/lib/utils/scroll-into-view":"uasE","element-ui/lib/tag":"vzRn","element-ui/lib/utils/scrollbar-width":"FZeG","element-ui/lib/checkbox-group":"xxRS","element-ui/lib/utils/after-leave":"CGdt","element-ui/lib/progress":"5QpA","element-ui/lib/utils/aria-utils":"F/go","throttle-debounce":"NNWo","element-ui/lib/select":"2t+T","element-ui/lib/option":"gGl7","element-ui/lib/button-group":"6VRC","normalize-wheel":"TW9E","element-ui/lib/utils/aria-dialog":"UGk/","async-validator":"fR9K","element-ui/lib/input-number":"obR7","element-ui/lib/cascader-panel":"xmZa","element-ui/lib/radio":"/Oiz"}],"XcyJ":[function(require,module,exports) {
-"use strict";
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var orm_1 = require("~/models/orm");
-
-var IssueStatus =
-/** @class */
-function (_super) {
-  __extends(IssueStatus, _super);
-
-  function IssueStatus() {
-    return _super !== null && _super.apply(this, arguments) || this;
-  }
-
-  return IssueStatus;
-}(orm_1.Orm);
-
-exports.IssueStatus = IssueStatus;
-},{"~/models/orm":"R9da"}],"Go0Q":[function(require,module,exports) {
-"use strict";
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var orm_1 = require("~/models/orm");
-
-var Project =
-/** @class */
-function (_super) {
-  __extends(Project, _super);
-
-  function Project(obj) {
-    var _this = _super.call(this) || this;
-
-    _this.id = obj.id;
-    _this.name = obj.name;
-    _this.identifier = obj.identifier;
-    _this.description = obj.description;
-    _this.created_on = obj.created_on;
-    _this.updated_on = obj.updated_on;
-    _this.is_public = obj.is_public;
-    return _this;
-  }
-
-  return Project;
-}(orm_1.Orm);
-
-exports.Project = Project;
-},{"~/models/orm":"R9da"}],"LJBG":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var issue_1 = require("~/models/issue");
-
-exports.Issue = issue_1.Issue;
-
-var issue_status_1 = require("~/models/issue-status");
-
-exports.IssueStatus = issue_status_1.IssueStatus;
-
-var project_1 = require("~/models/project");
-
-exports.Project = project_1.Project;
-},{"~/models/issue":"yCRT","~/models/issue-status":"XcyJ","~/models/project":"Go0Q"}],"KAHu":[function(require,module,exports) {
+},{"element-ui/lib/utils/date-util":"VzUj","element-ui/lib/utils/dom":"1SSF","element-ui/lib/utils/util":"M+Im","element-ui/lib/mixins/emitter":"ASef","element-ui/lib/mixins/locale":"X3QK","element-ui/lib/utils/vue-popper":"2kJb","vue":"QPfz","element-ui/lib/utils/merge":"uLxC","element-ui/lib/mixins/migrating":"DxTd","element-ui/lib/input":"AQhJ","element-ui/lib/utils/clickoutside":"c3dP","element-ui/lib/utils/resize-event":"UjVH","element-ui/lib/utils/popup":"RfNd","throttle-debounce/debounce":"J3wN","element-ui/lib/checkbox":"JZqS","element-ui/lib/locale":"UOcq","element-ui/lib/scrollbar":"QvAt","element-ui/lib/button":"vtgS","element-ui/lib/utils/types":"U9c6","element-ui/lib/utils/shared":"UkBB","element-ui/lib/utils/date":"boTQ","element-ui/lib/transitions/collapse-transition":"Js11","element-ui/lib/mixins/focus":"U6Ly","element-ui/lib/utils/vdom":"94jR","babel-helper-vue-jsx-merge-props":"Gsyi","throttle-debounce/throttle":"d9oq","element-ui/lib/tooltip":"O7cW","element-ui/lib/utils/scroll-into-view":"uasE","element-ui/lib/tag":"vzRn","element-ui/lib/utils/scrollbar-width":"FZeG","element-ui/lib/checkbox-group":"xxRS","element-ui/lib/utils/after-leave":"CGdt","element-ui/lib/progress":"5QpA","element-ui/lib/utils/aria-utils":"F/go","throttle-debounce":"NNWo","element-ui/lib/select":"2t+T","element-ui/lib/option":"gGl7","element-ui/lib/button-group":"6VRC","normalize-wheel":"TW9E","element-ui/lib/utils/aria-dialog":"UGk/","async-validator":"fR9K","element-ui/lib/input-number":"obR7","element-ui/lib/cascader-panel":"xmZa","element-ui/lib/radio":"/Oiz"}],"KAHu":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -115923,10 +115923,60 @@ function (_super) {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
     _this.issues = [];
+    _this.issueStatuses = [];
     _this.lastSelection = [];
     _this.dialogVisible = false;
     return _this;
   }
+
+  SubtaskTable.prototype.mounted = function () {
+    // openのチケットだけ表示
+    this.setFilterValues('status.name', this.openStatusValues());
+  };
+  /**
+   * チケットのクローズ状態を表すステータスのidを返却する。
+   *
+   * @return {Array<number>}
+   */
+
+
+  SubtaskTable.prototype.openStatusValues = function () {
+    return this.issueStatuses.filter(function (status) {
+      return !status.is_closed;
+    }).map(function (status) {
+      return status.id;
+    });
+  };
+  /**
+   * フィルタの値を変更する。
+   *
+   * @param {string} columnProp カラム名
+   * @param {Array<number>} values 選択状態にする値
+   */
+
+
+  SubtaskTable.prototype.setFilterValues = function (columnProp, values) {
+    var subtaskTable = this.$refs.subtaskTable;
+
+    if (!subtaskTable) {
+      return;
+    }
+
+    console.log(subtaskTable);
+    var column = subtaskTable.columns.find(function (col) {
+      return col.property === columnProp;
+    });
+
+    if (!column) {
+      return;
+    }
+
+    subtaskTable.store.commit('filterChange', {
+      column: column,
+      values: values
+    });
+    subtaskTable.store.updateAllSelected();
+  };
 
   SubtaskTable.prototype.selectionChangeHandler = function (selection) {
     this.lastSelection = selection;
@@ -115988,7 +116038,7 @@ exports.default = SubtaskTable;
     
         /* template */
         Object.assign($c364b0, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-table',{ref:"subtaskTable",attrs:{"border":true,"class-name":"list","data":_vm.issues,"stripe":true,"size":"medium"},on:{"selection-change":_vm.selectionChangeHandler,"row-click":_vm.rowClickHandler,"row-contextmenu":_vm.goBulkEdit}},[_c('el-table-column',{attrs:{"type":"selection","min-width":5}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"id","label":"Id","sortable":"","min-width":10},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('a',{attrs:{"href":("/issues/" + (scope.row.id))}},[_vm._v(_vm._s(scope.row.id))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"subject","label":"Subject","sortable":"","min-width":35},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('a',{attrs:{"href":("/issues/" + (scope.row.id))}},[_vm._v(_vm._s(scope.row.subject))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status.name","label":"Status","filters":_vm.statusFilter(),"filter-method":_vm.statusFilterMethod,"sortable":"","min-width":15}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"assigned_to.name","label":"Assignee","sortable":"","min-width":15}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"due_date","label":"Due date","filters":_vm.dueDateFilter(),"filter-method":_vm.dueDateFilterMethod,"sortable":"","min-width":15}})],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-table',{ref:"subtaskTable",attrs:{"border":true,"class-name":"list","data":_vm.issues,"stripe":true,"size":"mini"},on:{"selection-change":_vm.selectionChangeHandler,"row-click":_vm.rowClickHandler,"row-contextmenu":_vm.goBulkEdit}},[_c('el-table-column',{attrs:{"type":"selection","min-width":5}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"id","label":"Id","sortable":"","min-width":10},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('a',{attrs:{"href":("/issues/" + (scope.row.id))}},[_vm._v(_vm._s(scope.row.id))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"subject","label":"Subject","sortable":"","min-width":35},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('a',{attrs:{"href":("/issues/" + (scope.row.id))}},[_vm._v(_vm._s(scope.row.subject))])]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"status.name","label":"Status","filters":_vm.statusFilter(),"filter-method":_vm.statusFilterMethod,"sortable":"","min-width":15}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"assigned_to.name","label":"Assignee","sortable":"","min-width":15}}),_vm._v(" "),_c('el-table-column',{attrs:{"prop":"due_date","label":"Due date","filters":_vm.dueDateFilter(),"filter-method":_vm.dueDateFilterMethod,"sortable":"","min-width":15}})],1)}
 var staticRenderFns = []
 
           return {
@@ -116154,7 +116204,7 @@ Object.defineProperty(exports, "__esModule", {
 
 require("vis-timeline/dist/vis-timeline-graph2d.css");
 
-var issue_1 = require("~/models/issue");
+var models_1 = require("~/models");
 
 var fav_button_1 = require("~/views/components/fav-button");
 
@@ -116173,7 +116223,7 @@ var IssuePage =
 function () {
   function IssuePage(issueId) {
     this.options = {};
-    this.issue = new issue_1.Issue({
+    this.issue = new models_1.Issue({
       id: Number(issueId),
       subject: document.querySelector('#content .subject h3').innerText
     });
@@ -116181,7 +116231,7 @@ function () {
 
   IssuePage.prototype.create = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var _a, subtaskTable;
+      var _a, issueStatuses, subtaskTable;
 
       return __generator(this, function (_b) {
         switch (_b.label) {
@@ -116193,6 +116243,12 @@ function () {
 
           case 1:
             _a.subtasks = _b.sent();
+            return [4
+            /*yield*/
+            , models_1.IssueStatus.all()];
+
+          case 2:
+            issueStatuses = _b.sent();
 
             if (this.subtasks.length > 0) {
               // this.createTimeline()
@@ -116201,7 +116257,8 @@ function () {
               subtaskTable = new SubtaskTable_1.default({
                 el: '#relations',
                 data: {
-                  issues: this.subtasks
+                  issues: this.subtasks,
+                  issueStatuses: issueStatuses
                 }
               });
             }
@@ -116252,7 +116309,7 @@ function () {
 }();
 
 exports.IssuePage = IssuePage;
-},{"vis-timeline/dist/vis-timeline-graph2d.css":"CUKr","~/models/issue":"yCRT","~/views/components/fav-button":"ysed","~/views/components/fav-menu":"gjkd","~/views/components/Subject":"8RqO","~/views/components/subtask-gantt-chart":"sKIp","~/views/components/simple-subtask-table":"CgJe","~/views/components/organisms/SubtaskTable":"KAHu"}],"lzcC":[function(require,module,exports) {
+},{"vis-timeline/dist/vis-timeline-graph2d.css":"CUKr","~/models":"LJBG","~/views/components/fav-button":"ysed","~/views/components/fav-menu":"gjkd","~/views/components/Subject":"8RqO","~/views/components/subtask-gantt-chart":"sKIp","~/views/components/simple-subtask-table":"CgJe","~/views/components/organisms/SubtaskTable":"KAHu"}],"lzcC":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
