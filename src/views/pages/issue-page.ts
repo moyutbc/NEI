@@ -34,11 +34,11 @@ export class IssuePage implements Page {
 
     if (this.subtasks.length > 0) {
       // this.createTimeline()
-      this.destroySubtasksTable()
-      this.createSubtasksTable()
+      // this.destroySubtasksTable()
+      // this.createSubtasksTable()
 
       const subtaskTable = new SubtaskTable({
-        el: '#relations',
+        el: '#issue_tree > form > table',
         data: {
           issues: this.subtasks,
           issueStatuses: issueStatuses
