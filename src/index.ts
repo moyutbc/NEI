@@ -1,5 +1,6 @@
 import { AppController } from "~/controllers/app-controller";
 import { Redmine } from "./gateways/redmine";
+import { LocalStore } from "./utilities/local-store";
 import { Issue, IssueStatus, Project } from "./models";
 import { IssuePage } from "./views/pages/issue-page";
 import { FavMenu } from "./views/components/fav-menu";
@@ -18,5 +19,6 @@ export {
   Issue,
   IssueStatus,
   Project,
-  IssuePage
+  IssuePage,
+  LocalStore
 };

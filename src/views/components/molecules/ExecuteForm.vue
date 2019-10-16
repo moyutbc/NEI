@@ -1,7 +1,9 @@
 <template>
   <el-form :model="form">
     <el-input type="textarea" v-model="form.contents"></el-input>
-    <execute-button propLabel="実行" :propCallback="getCallback()"></execute-button>
+    <el-button @click="save">Save</el-button>
+    <el-button @click="load">Load</el-button>
+    <el-button @click="execute">Execute</el-button>
   </el-form>
 </template>
 
@@ -12,20 +14,33 @@ Vue.use(Button)
 Vue.use(Form)
 Vue.use(Input)
 
-import ExecuteButton from './ExecuteButton';
+import { LocalStore } from '~/utilities/local-store';
 
-@Component({
-  components: {
-    ExecuteButton
-  }
-})
+@Component
 export default class ExecuteForm extends Vue {
   form = {
     contents: ''
   }
 
+  mounted() {
+    this.load();
+  }
+
   private getCallback() {
     return () => { eval(this.form.contents) }
+  }
+
+  private load(): void {
+    const contents = LocalStore.get('issue-page.execute')
+    this.form.contents = contents
+  }
+
+  private save(): void {
+    LocalStore.set('issue-page.execute', this.form.contents)
+  }
+
+  private execute(): void {
+    eval(this.form.contents)
   }
 }
 </script>

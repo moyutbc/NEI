@@ -14,7 +14,6 @@ import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 
-// import ExecuteButton from '~/views/components/molecules/ExecuteButton'
 import ExecuteForm from '~/views/components/molecules/ExecuteForm'
 
 export class IssuePage implements Page {
