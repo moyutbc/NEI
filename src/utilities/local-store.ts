@@ -7,9 +7,10 @@ export class LocalStore {
   public static get(keyStr: string): void {
     const keys = keyStr.split('.')
 
-    let tmpLocalStorage = JSON.parse(localStorage.getItem(LocalStore.KEY))
+    let tmpLocalStorage = JSON.parse(localStorage.getItem(LocalStore.KEY)) || {}
     while (keys.length > 0) {
       const key = keys.shift()
+      if (!tmpLocalStorage[key]) { return null }
       tmpLocalStorage = tmpLocalStorage[key]
     }
 
