@@ -1,6 +1,10 @@
 <template>
   <el-form :model="form">
-    <el-input type="textarea" v-model="form.contents"></el-input>
+    <el-input
+      type="textarea"
+      placeholder="任意のJavaScriptを実行"
+      v-model="form.contents">
+    </el-input>
     <el-button @click="save">Save</el-button>
     <el-button @click="load">Load</el-button>
     <el-button @click="execute">Execute</el-button>
