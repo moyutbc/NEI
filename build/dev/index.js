@@ -116116,7 +116116,7 @@ function () {
 }();
 
 exports.LocalStore = LocalStore;
-},{}],"ANwo":[function(require,module,exports) {
+},{}],"CLNG":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -116217,15 +116217,151 @@ function (_super) {
 }(vue_property_decorator_1.Vue);
 
 exports.default = ExecuteForm;
-        var $ee322a = exports.default || module.exports;
+        var $55bfc4 = exports.default || module.exports;
       
-      if (typeof $ee322a === 'function') {
-        $ee322a = $ee322a.options;
+      if (typeof $55bfc4 === 'function') {
+        $55bfc4 = $55bfc4.options;
       }
     
         /* template */
-        Object.assign($ee322a, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{attrs:{"model":_vm.form}},[_c('el-input',{attrs:{"type":"textarea","placeholder":"任意のJavaScriptを実行"},model:{value:(_vm.form.contents),callback:function ($$v) {_vm.$set(_vm.form, "contents", $$v)},expression:"form.contents"}}),_vm._v(" "),_c('el-row',[_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.save}},[_vm._v("Save")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.load}},[_vm._v("Load")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.execute}},[_vm._v("Execute")])],1)],1)],1)}
+        Object.assign($55bfc4, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-form',{attrs:{"model":_vm.form}},[_c('el-input',{attrs:{"type":"textarea","placeholder":"任意のJavaScriptを実行"},model:{value:(_vm.form.contents),callback:function ($$v) {_vm.$set(_vm.form, "contents", $$v)},expression:"form.contents"}}),_vm._v(" "),_c('el-row',[_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},attrs:{"type":"primary"},on:{"click":_vm.execute}},[_vm._v("Execute")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.load}},[_vm._v("Load")])],1),_vm._v(" "),_c('el-col',{attrs:{"span":8}},[_c('el-button',{staticStyle:{"width":"100%"},on:{"click":_vm.save}},[_vm._v("Save")])],1)],1)],1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+},{"vue-property-decorator":"+oHl","element-ui":"mEfl","~/utilities/local-store":"vkaC"}],"srGl":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var vue_property_decorator_1 = require("vue-property-decorator");
+
+var element_ui_1 = require("element-ui");
+
+vue_property_decorator_1.Vue.use(element_ui_1.Button);
+vue_property_decorator_1.Vue.use(element_ui_1.Container);
+vue_property_decorator_1.Vue.use(element_ui_1.Drawer);
+vue_property_decorator_1.Vue.use(element_ui_1.Header);
+vue_property_decorator_1.Vue.use(element_ui_1.Link);
+vue_property_decorator_1.Vue.use(element_ui_1.Main);
+
+var local_store_1 = require("~/utilities/local-store");
+
+var IssuePageDrawer =
+/** @class */
+function (_super) {
+  __extends(IssuePageDrawer, _super);
+
+  function IssuePageDrawer() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.drawer = false;
+    _this.issue = null;
+    _this.favs = [];
+    return _this;
+  }
+  /**
+   * favsを初期化
+   */
+
+
+  IssuePageDrawer.prototype.setup = function () {
+    this.favs = local_store_1.LocalStore.get('issue-page.drawer.favs');
+
+    if (!this.favs) {
+      this.favs = [];
+      local_store_1.LocalStore.set('issue-page.drawer.favs', this.favs);
+    }
+  };
+  /**
+   * お気に入りに追加
+   */
+
+
+  IssuePageDrawer.prototype.fav = function () {
+    this.favs.push(this.issue);
+    local_store_1.LocalStore.set('issue-page.drawer.favs', this.favs);
+  };
+  /**
+   * お気に入りから削除
+   */
+
+
+  IssuePageDrawer.prototype.unfav = function (index) {
+    this.favs.splice(index, 1);
+    local_store_1.LocalStore.set('issue-page.drawer.favs', this.favs);
+  };
+  /**
+   * issueのページURL
+   */
+
+
+  IssuePageDrawer.prototype.getIssueUrl = function (issue) {
+    return location.href.split('/').slice(0, -1).concat(issue.id).join('/');
+  };
+
+  IssuePageDrawer = __decorate([vue_property_decorator_1.Component], IssuePageDrawer);
+  return IssuePageDrawer;
+}(vue_property_decorator_1.Vue);
+
+exports.default = IssuePageDrawer;
+        var $a00cf6 = exports.default || module.exports;
+      
+      if (typeof $a00cf6 === 'function') {
+        $a00cf6 = $a00cf6.options;
+      }
+    
+        /* template */
+        Object.assign($a00cf6, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('el-button',{on:{"click":function($event){_vm.drawer = true}}},[_vm._v("\n    show\n  ")]),_vm._v(" "),_c('el-drawer',{attrs:{"visible":_vm.drawer,"direction":"ltr"},on:{"update:visible":function($event){_vm.drawer=$event},"open":_vm.setup}},[_c('el-container',[_c('el-header',[_vm._v("\n        お気に入り\n        "),_c('el-button',{on:{"click":_vm.fav}},[_vm._v("追加")])],1),_vm._v(" "),_c('el-main',_vm._l((_vm.favs),function(issue,index){return _c('el-row',{attrs:{"type":"flex","justify":"space-between"}},[_c('el-link',{attrs:{"href":_vm.getIssueUrl(issue),"underline":false}},[_vm._v("\n            "+_vm._s(issue.subject)+"\n          ")]),_vm._v(" "),_c('el-button',{attrs:{"icon":"el-icon-delete","circle":""},on:{"click":function($event){return _vm.unfav(index)}}})],1)}),1)],1)],1)],1)}
 var staticRenderFns = []
 
           return {
@@ -116405,7 +116541,9 @@ var simple_subtask_table_1 = require("~/views/components/simple-subtask-table");
 
 var SubtaskTable_1 = __importDefault(require("~/views/components/organisms/SubtaskTable"));
 
-var ExecuteForm_1 = __importDefault(require("~/views/components/molecules/ExecuteForm"));
+var ExecuteForm_1 = __importDefault(require("~/views/components/organisms/ExecuteForm"));
+
+var IssuePageDrawer_1 = __importDefault(require("~/views/components/organisms/IssuePageDrawer"));
 
 var IssuePage =
 /** @class */
@@ -116419,13 +116557,16 @@ function () {
 
     var div = document.createElement('div');
     div.id = 'execute-buttons';
-    var sidebar = document.querySelector('#sidebar');
-    sidebar.insertAdjacentElement('beforeend', div);
+    document.querySelector('#sidebar').insertAdjacentElement('beforeend', div); // drawer
+
+    var drawer = document.createElement('div');
+    drawer.id = 'drawer';
+    document.querySelector('#main').insertAdjacentElement('beforeend', drawer);
   }
 
   IssuePage.prototype.create = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var _a, issueStatuses, subtaskTable, executeForm;
+      var _a, issueStatuses, subtaskTable, executeForm, issuePageDrawer;
 
       return __generator(this, function (_b) {
         switch (_b.label) {
@@ -116457,6 +116598,12 @@ function () {
             Subject_1.Subject.setup();
             executeForm = new ExecuteForm_1.default({
               el: '#execute-buttons'
+            });
+            issuePageDrawer = new IssuePageDrawer_1.default({
+              el: '#drawer',
+              data: {
+                issue: this.issue
+              }
             });
             return [2
             /*return*/
@@ -116501,7 +116648,7 @@ function () {
 }();
 
 exports.IssuePage = IssuePage;
-},{"vis-timeline/dist/vis-timeline-graph2d.css":"CUKr","~/models":"LJBG","~/views/components/fav-button":"ysed","~/views/components/fav-menu":"gjkd","~/views/components/Subject":"8RqO","~/views/components/subtask-gantt-chart":"sKIp","~/views/components/simple-subtask-table":"CgJe","~/views/components/organisms/SubtaskTable":"KAHu","~/views/components/molecules/ExecuteForm":"ANwo"}],"lzcC":[function(require,module,exports) {
+},{"vis-timeline/dist/vis-timeline-graph2d.css":"CUKr","~/models":"LJBG","~/views/components/fav-button":"ysed","~/views/components/fav-menu":"gjkd","~/views/components/Subject":"8RqO","~/views/components/subtask-gantt-chart":"sKIp","~/views/components/simple-subtask-table":"CgJe","~/views/components/organisms/SubtaskTable":"KAHu","~/views/components/organisms/ExecuteForm":"CLNG","~/views/components/organisms/IssuePageDrawer":"srGl"}],"lzcC":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
