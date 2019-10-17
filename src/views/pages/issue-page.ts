@@ -13,8 +13,8 @@ import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
-
 import ExecuteForm from '~/views/components/molecules/ExecuteForm'
+import IssuePageDrawer from '~/views/components/organisms/IssuePageDrawer'
 
 export class IssuePage implements Page {
   private issue: Issue
@@ -32,8 +32,12 @@ export class IssuePage implements Page {
     // execute-buttons
     const div = document.createElement('div')
     div.id = 'execute-buttons'
-    const sidebar = document.querySelector('#sidebar')
-    sidebar.insertAdjacentElement('beforeend', div)
+    document.querySelector('#sidebar').insertAdjacentElement('beforeend', div)
+
+    // drawer
+    const drawer = document.createElement('div')
+    drawer.id = 'drawer'
+    document.querySelector('#main').insertAdjacentElement('beforeend', drawer)
   }
   
   public async create(): void {
@@ -61,6 +65,13 @@ export class IssuePage implements Page {
 
     const executeForm = new ExecuteForm({
       el: '#execute-buttons'
+    })
+
+    const issuePageDrawer = new IssuePageDrawer({
+      el: '#drawer',
+      data: {
+        issue: this.issue
+      }
     })
   }
   
