@@ -116361,7 +116361,7 @@ exports.default = IssuePageDrawer;
     
         /* template */
         Object.assign($a00cf6, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('el-button',{on:{"click":function($event){_vm.drawer = true}}},[_vm._v("\n    show\n  ")]),_vm._v(" "),_c('el-drawer',{attrs:{"visible":_vm.drawer,"direction":"ltr"},on:{"update:visible":function($event){_vm.drawer=$event},"open":_vm.setup}},[_c('el-container',[_c('el-header',[_vm._v("\n        お気に入り\n        "),_c('el-button',{on:{"click":_vm.fav}},[_vm._v("追加")])],1),_vm._v(" "),_c('el-main',_vm._l((_vm.favs),function(issue,index){return _c('el-row',{attrs:{"type":"flex","justify":"space-between"}},[_c('el-link',{attrs:{"href":_vm.getIssueUrl(issue),"underline":false}},[_vm._v("\n            "+_vm._s(issue.subject)+"\n          ")]),_vm._v(" "),_c('el-button',{attrs:{"icon":"el-icon-delete","circle":""},on:{"click":function($event){return _vm.unfav(index)}}})],1)}),1)],1)],1)],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',[_c('el-button',{staticStyle:{"padding":"0","margin-right":"8px"},attrs:{"type":"text","icon":"el-icon-set-up"},on:{"click":function($event){_vm.drawer = true}}}),_vm._v(" "),_c('el-drawer',{attrs:{"visible":_vm.drawer,"direction":"ltr"},on:{"update:visible":function($event){_vm.drawer=$event},"open":_vm.setup}},[_c('el-container',[_c('el-header',[_vm._v("\n        お気に入り\n        "),_c('el-button',{on:{"click":_vm.fav}},[_vm._v("追加")])],1),_vm._v(" "),_c('el-main',_vm._l((_vm.favs),function(issue,index){return _c('el-row',{attrs:{"type":"flex","justify":"space-between"}},[_c('el-link',{attrs:{"href":_vm.getIssueUrl(issue),"underline":false}},[_vm._v("\n            "+_vm._s(issue.subject)+"\n          ")]),_vm._v(" "),_c('el-button',{attrs:{"icon":"el-icon-delete","circle":""},on:{"click":function($event){return _vm.unfav(index)}}})],1)}),1)],1)],1)],1)}
 var staticRenderFns = []
 
           return {
@@ -116561,7 +116561,7 @@ function () {
 
     var drawer = document.createElement('div');
     drawer.id = 'drawer';
-    document.querySelector('#main').insertAdjacentElement('beforeend', drawer);
+    document.querySelector('#top-menu > ul').insertAdjacentElement('afterBegin', drawer);
   }
 
   IssuePage.prototype.create = function () {
