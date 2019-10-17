@@ -37,7 +37,7 @@ export class IssuePage implements Page {
     // drawer
     const drawer = document.createElement('div')
     drawer.id = 'drawer'
-    document.querySelector('#main').insertAdjacentElement('beforeend', drawer)
+    document.querySelector('#top-menu > ul').insertAdjacentElement('afterBegin', drawer)
   }
   
   public async create(): void {

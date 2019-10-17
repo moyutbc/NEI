@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <el-button @click="drawer = true">
-      show
+  <li>
+    <el-button
+      type="text"
+      icon="el-icon-set-up"
+      @click="drawer = true"
+      style="padding: 0; margin-right: 8px;">
     </el-button>
 
     <el-drawer
@@ -29,7 +32,7 @@
         </el-main>
       </el-container>
     </el-drawer>
-  </div>
+  </li>
 </template>
 
 <script lang="ts">
