@@ -13,7 +13,7 @@ import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
-import ExecuteForm from '~/views/components/molecules/ExecuteForm'
+import ExecuteForm from '~/views/components/organisms/ExecuteForm'
 import IssuePageDrawer from '~/views/components/organisms/IssuePageDrawer'
 
 export class IssuePage implements Page {

@@ -6,9 +6,9 @@
       v-model="form.contents">
     </el-input>
     <el-row>
-      <el-col :span="8"><el-button style="width: 100%;" @click="save">Save</el-button></el-col>
+      <el-col :span="8"><el-button style="width: 100%;" type="primary" @click="execute">Execute</el-button></el-col>
       <el-col :span="8"><el-button style="width: 100%;" @click="load">Load</el-button></el-col>
-      <el-col :span="8"><el-button style="width: 100%;" @click="execute">Execute</el-button></el-col>
+      <el-col :span="8"><el-button style="width: 100%;" @click="save">Save</el-button></el-col>
     </el-row>
   </el-form>
 </template>
