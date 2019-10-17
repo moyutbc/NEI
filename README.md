@@ -1,4 +1,4 @@
-# Welcome to NotEnoughIssues 👋
+# Welcome to momiji 👋
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 
 > Extend your Redmine
