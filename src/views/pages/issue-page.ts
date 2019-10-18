@@ -5,13 +5,13 @@ import Hogan from 'hogan.js/dist/hogan-3.0.2.min.js'
 import { Page } from '~/types/index'
 import { Issue, IssueStatus } from '~/models'
 
-import { Subject } from '~/views/components/Subject'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 import ExecuteForm from '~/views/components/organisms/ExecuteForm'
 import IssuePageDrawer from '~/views/components/organisms/IssuePageDrawer'
+import IssueSubjectLabel from '~/views/components/organisms/IssueSubjectLabel'
 
 export class IssuePage implements Page {
   private issue: Issue
@@ -55,8 +55,6 @@ export class IssuePage implements Page {
       })
     }
 
-    Subject.setup()
-
     const executeForm = new ExecuteForm({
       el: '#execute-buttons'
     })
@@ -65,6 +63,13 @@ export class IssuePage implements Page {
       el: '#drawer',
       data: {
         issue: this.issue
+      }
+    })
+
+    const issueSubjectLabel = new IssueSubjectLabel({
+      el: '#content div.subject h3',
+      data: {
+        subject: this.issue.subject
       }
     })
   }
