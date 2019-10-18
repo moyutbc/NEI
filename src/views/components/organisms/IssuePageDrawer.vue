@@ -2,12 +2,13 @@
   <li>
     <el-button
       type="text"
-      icon="el-icon-set-up"
       @click="drawer = true"
       style="padding: 0; margin-right: 8px;">
+      🍁
     </el-button>
 
     <el-drawer
+      title="🍁 momiji"
       :visible.sync="drawer"
       direction="ltr"
       @open="setup">
