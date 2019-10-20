@@ -14,15 +14,17 @@
       @open="setup">
       <el-container>
         <el-header>
-          お気に入り
-          <el-button @click="fav">追加</el-button>
+          <el-row type="flex" justify="space-between">
+            お気に入り
+            <el-button @click="fav">追加</el-button>
+          </el-row>
         </el-header>
         <el-main>
           <el-row type="flex" justify="space-between" v-for="(issue, index) in favs">
             <el-link
               :href="getIssueUrl(issue)"
               :underline="false">
-              {{ issue.subject }}
+              #{{issue.id}} {{ issue.subject }}
             </el-link>
             <el-button
               icon="el-icon-delete"
