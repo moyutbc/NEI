@@ -1,22 +1,19 @@
-import { IssuePage } from '~/views/pages/issue-page'
-import { HomePage } from '~/views/pages/home-page'
+import { HomePage, IssuePage, MyPage } from '~/views/pages'
 
 export class AppController {
   public static dispatch(url: string): void {
-    let page
-
     const schemeFQDN = /https?:\/\/[^/]*/.exec(url)[0] + '/'
     if (schemeFQDN === url) {
-      page = new HomePage()
+      (new HomePage()).create()
     }
 
     const arr = /issues\/(\d+)/.exec(url)
     if (arr !== null) {
-      page = new IssuePage(arr[1])
+      (new IssuePage(arr[1])).create()
     }
 
-    if (page) {
-      page.create()
+    if(/my\/page/.test(url)) {
+      (new MyPage()).create()
     }
   }
 }
