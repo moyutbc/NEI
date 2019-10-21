@@ -16,7 +16,11 @@ export class MyPage implements Page {
 
   public async create(): void {
     // 今日期日のチケット
-    const ticketsDueToday = await Issue.where({ assigned_to_id: 'me', due_date: `=${this.getToday()}` })
+    const ticketsDueToday = await Issue.where({
+      assigned_to_id: 'me',
+      due_date: `=${this.getToday()}`,
+      status_id: '*'
+    })
 
     new MyPageBox({
       el: '#tickets-due-today',
@@ -28,7 +32,11 @@ export class MyPage implements Page {
     })
 
     // 今週期日のチケット
-    const ticketsDueThisWeek = await Issue.where({ assigned_to_id: 'me', due_date: `<=${this.getNextSunday()}` })
+    const ticketsDueThisWeek = await Issue.where({
+      assigned_to_id: 'me',
+      due_date: `><${this.getPrevSunday()}|${this.getNextSunday()}`,
+      status_id: '*'
+    })
 
     new MyPageBox({
       el: '#tickets-due-this-week',
@@ -48,6 +56,22 @@ export class MyPage implements Page {
     const day = today.getDate();
 
     return `${year}-${month}-${day}`
+  }
+
+  private getPrevSunday(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const weekday = today.getDay();
+
+    const diff = weekday; // 0: 日曜日 ~ 6: 土曜日
+    today.setDate(day - diff);
+    const sundayYear = today.getFullYear();
+    const sundayMonth = today.getMonth() + 1;
+    const sundayDay = today.getDate();
+
+    return `${sundayYear}-${sundayMonth}-${sundayDay}`
   }
 
   private getNextSunday(): string {
