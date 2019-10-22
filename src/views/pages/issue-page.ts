@@ -12,6 +12,7 @@ import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 import ExecuteForm from '~/views/components/organisms/ExecuteForm'
 import IssuePageDrawer from '~/views/components/organisms/IssuePageDrawer'
 import IssueSubjectLabel from '~/views/components/organisms/IssueSubjectLabel'
+import IssueForm from '~/views/components/organisms/IssueForm'
 
 export class IssuePage implements Page {
   private issue: Issue
@@ -35,6 +36,12 @@ export class IssuePage implements Page {
     const drawer = document.createElement('div')
     drawer.id = 'drawer'
     document.querySelector('#top-menu > ul').insertAdjacentElement('afterBegin', drawer)
+
+    // issue-form
+    const issueForm = document.createElement('div')
+    IssueForm.id = 'issue-form'
+    // document.querySelector('#content > div.contextual').insertAdjacentElement('afterBegin', issueForm)
+    document.querySelector('#watchers').insertAdjacentElement('afterBegin', issueForm)
   }
   
   public async create(): void {
@@ -72,6 +79,13 @@ export class IssuePage implements Page {
         subject: this.issue.subject
       }
     })
+
+    // new IssueForm({
+    //   el: '.wiki',
+    //   data: {
+    //     issue: this.issue
+    //   }
+    // })
   }
   
   private createTimeline(): void {
