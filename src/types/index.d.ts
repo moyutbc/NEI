@@ -1,3 +1,8 @@
+export interface Status {
+  id: number
+  name: string
+}
+
 export interface Page {
   create(): void
 }

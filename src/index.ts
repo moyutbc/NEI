@@ -1,7 +1,7 @@
 import { AppController } from "~/controllers/app-controller";
 import { Redmine } from "./gateways/redmine";
 import { LocalStore } from "./utilities/local-store";
-import { Issue, IssueStatus, Project } from "./models";
+import { Issue, IssueStatus, Project, Tracker } from "./models";
 import { IssuePage } from "./views/pages/issue-page";
 
 import 'element-ui/lib/theme-chalk/index.css';
@@ -17,6 +17,7 @@ export {
   Issue,
   IssueStatus,
   Project,
+  Tracker,
   IssuePage,
   LocalStore
 };

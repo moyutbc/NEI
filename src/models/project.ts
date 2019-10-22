@@ -6,9 +6,10 @@ export class Project extends Orm {
   name: string
   identifier: string
   description: string
+  status: number
+  is_public: boolean
   created_on: Dayjs
   updated_on: Dayjs
-  is_public: boolean
 
   constructor(obj: any) {
     super()
@@ -16,6 +17,7 @@ export class Project extends Orm {
     this.name = obj.name
     this.identifier = obj.identifier
     this.description = obj.description
+    this.status = obj.status
     this.created_on = obj.created_on
     this.updated_on = obj.updated_on
     this.is_public = obj.is_public
