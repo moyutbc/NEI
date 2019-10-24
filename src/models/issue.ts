@@ -44,7 +44,12 @@ export class Issue extends Orm implements FavItem {
 
   public static async where(conditions = {}): Promise<any> {
     // issues must be ordered by id.
-    return (await super.where(conditions)).sort((a, b) => a.id - b.id)
+    const conditionsWithSort = {
+      sort: 'id:asc',
+      ...conditions
+    }
+    
+    return await super.where(conditionsWithSort)
   }
 
   public static async getChildren(parentId: number): Promise<any> {

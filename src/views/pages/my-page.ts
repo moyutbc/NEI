@@ -35,7 +35,8 @@ export class MyPage implements Page {
     const ticketsDueThisWeek = await Issue.where({
       assigned_to_id: 'me',
       due_date: `><${this.getPrevSunday()}|${this.getNextSunday()}`,
-      status_id: '*'
+      status_id: '*',
+      sort: 'due_date:asc'
     })
 
     new MyPageBox({
