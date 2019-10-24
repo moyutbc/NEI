@@ -8,6 +8,7 @@ export class Project extends Orm {
   description: string
   status: number
   is_public: boolean
+  parent: { id: number, name: string }
   created_on: Dayjs
   updated_on: Dayjs
 
@@ -21,5 +22,6 @@ export class Project extends Orm {
     this.created_on = obj.created_on
     this.updated_on = obj.updated_on
     this.is_public = obj.is_public
+    this.parent = obj.parent
   }
 }
