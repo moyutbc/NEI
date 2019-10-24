@@ -10159,6 +10159,22 @@ var __extends = this && this.__extends || function () {
   };
 }();
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   return new (P || (P = Promise))(function (resolve, reject) {
     function fulfilled(value) {
@@ -10338,20 +10354,21 @@ function (_super) {
     }
 
     return __awaiter(this, void 0, Promise, function () {
+      var conditionsWithSort;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
+            conditionsWithSort = __assign({
+              sort: 'id:asc'
+            }, conditions);
             return [4
             /*yield*/
-            , _super.where.call(this, conditions)];
+            , _super.where.call(this, conditionsWithSort)];
 
           case 1:
-            // issues must be ordered by id.
             return [2
             /*return*/
-            , _a.sent().sort(function (a, b) {
-              return a.id - b.id;
-            })];
+            , _a.sent()];
         }
       });
     });
@@ -10516,6 +10533,7 @@ function (_super) {
     _this.created_on = obj.created_on;
     _this.updated_on = obj.updated_on;
     _this.is_public = obj.is_public;
+    _this.parent = obj.parent;
     return _this;
   }
 
@@ -117467,7 +117485,8 @@ function () {
             , models_1.Issue.where({
               assigned_to_id: 'me',
               due_date: "><" + this.getPrevSunday() + "|" + this.getNextSunday(),
-              status_id: '*'
+              status_id: '*',
+              sort: 'due_date:asc'
             })];
 
           case 2:
