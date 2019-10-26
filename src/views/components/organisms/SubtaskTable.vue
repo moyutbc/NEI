@@ -27,7 +27,7 @@
       prop="subject"
       label="Subject"
       sortable
-      :min-width="35" >
+      :min-width="30" >
       <template slot-scope="scope">
         <a :href="`/issues/${scope.row.id}`">{{ scope.row.subject }}</a>
       </template>
@@ -54,6 +54,16 @@
       sortable
       :min-width="15" >
     </el-table-column>
+    <el-table-column
+      label="Ops"
+      :min-width="5" >
+      <template slot-scope="scope">
+        <subtask-table-context-menu
+          :prop-issues="[scope.row]"
+          @change="refresh">
+        </subtask-table-context-menu>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
@@ -66,8 +76,11 @@ Vue.use(TableColumn)
 import _ from 'underscore/underscore-min.js';
 
 import { Issue } from '~/models'
+import SubtaskTableContextMenu from '~/views/components/organisms/SubtaskTableContextMenu'
 
-@Component
+@Component({
+  components: { SubtaskTableContextMenu }
+})
 export default class SubtaskTable extends Vue {
   issues: Array<Issue> = []
   issueStatuses: Array<IssueStatus> = []
@@ -153,6 +166,11 @@ export default class SubtaskTable extends Vue {
 
   private dueDateFilterMethod(value, row, column) {
     return value === row.due_date
+  }
+
+  private async refresh() {
+    const ids = this.issues.map(issue => issue.id)
+    this.issues = await Issue.where({id: ids})
   }
 }
 </script>

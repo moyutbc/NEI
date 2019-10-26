@@ -1,22 +1,31 @@
-import { Project, Tracker } from '~/models'
+import { IssueStatus, Project, Tracker } from '~/models'
 import { LocalStore } from '~/utilities/local-store';
 
 /**
  * ProjectやIssueStatusなどユーザーが定義したカスタム情報を管理するクラス
  */
 export class Resource {
+  public static get(resourceName: string): Array<any> {
+    const resources = LocalStore.get('resources')
+    return resources && resources[resourceName]
+      ? resources[resourceName]
+      : []
+  }
+
   /**
    * 最新の情報を取得しキャッシュする。
    */
   public static async pull() {
     const projects = await Project.all()
     const trackers = await Tracker.all()
+    const issueStatuses = await IssueStatus.all()
 
     const now = new Date().toLocaleString()
     const resources = {
       updatedAt: now,
-      projects: projects,
-      trackers: trackers
+      Project: projects,
+      Tracker: trackers,
+      IssueStatus: issueStatuses
     }
 
     LocalStore.set('resources', resources)
