@@ -10513,6 +10513,64 @@ function (_super) {
 }(orm_1.Orm);
 
 exports.Tracker = Tracker;
+},{"~/models/orm":"R9da"}],"icpy":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var orm_1 = require("~/models/orm");
+
+var User =
+/** @class */
+function (_super) {
+  __extends(User, _super);
+
+  function User(obj) {
+    var _this = _super.call(this) || this;
+
+    _this.admin = obj.admin;
+    _this.created_on = obj.created_on;
+    _this.firstname = obj.firstname;
+    _this.id = obj.id;
+    _this.last_login_on = obj.last_login_on;
+    _this.lastname = obj.lastname;
+    _this.login = obj.login;
+    _this.mail = obj.mail;
+    return _this;
+  }
+
+  return User;
+}(orm_1.Orm);
+
+exports.User = User;
 },{"~/models/orm":"R9da"}],"LJBG":[function(require,module,exports) {
 "use strict";
 
@@ -10535,7 +10593,11 @@ exports.Project = project_1.Project;
 var tracker_1 = require("~/models/tracker");
 
 exports.Tracker = tracker_1.Tracker;
-},{"~/models/issue":"yCRT","~/models/issue-status":"XcyJ","~/models/project":"Go0Q","~/models/tracker":"can8"}],"boTQ":[function(require,module,exports) {
+
+var user_1 = require("~/models/user");
+
+exports.User = user_1.User;
+},{"~/models/issue":"yCRT","~/models/issue-status":"XcyJ","~/models/project":"Go0Q","~/models/tracker":"can8","~/models/user":"icpy"}],"boTQ":[function(require,module,exports) {
 var define;
 'use strict';
 
@@ -116508,34 +116570,41 @@ function () {
 
   Resource.pull = function () {
     return __awaiter(this, void 0, void 0, function () {
-      var projects, trackers, issueStatuses, now, resources;
+      var issueStatuses, projects, trackers, users, now, resources;
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
             return [4
             /*yield*/
-            , models_1.Project.all()];
+            , models_1.IssueStatus.all()];
 
           case 1:
+            issueStatuses = _a.sent();
+            return [4
+            /*yield*/
+            , models_1.Project.all()];
+
+          case 2:
             projects = _a.sent();
             return [4
             /*yield*/
             , models_1.Tracker.all()];
 
-          case 2:
+          case 3:
             trackers = _a.sent();
             return [4
             /*yield*/
-            , models_1.IssueStatus.all()];
+            , models_1.User.all()];
 
-          case 3:
-            issueStatuses = _a.sent();
+          case 4:
+            users = _a.sent();
             now = new Date().toLocaleString();
             resources = {
               updatedAt: now,
               Project: projects,
               Tracker: trackers,
-              IssueStatus: issueStatuses
+              IssueStatus: issueStatuses,
+              User: users
             };
             local_store_1.LocalStore.set('resources', resources);
             return [2
@@ -116743,9 +116812,12 @@ vue_property_decorator_1.Vue.use(element_ui_1.Col);
 vue_property_decorator_1.Vue.use(element_ui_1.Button);
 vue_property_decorator_1.Vue.use(element_ui_1.Collapse);
 vue_property_decorator_1.Vue.use(element_ui_1.CollapseItem);
+vue_property_decorator_1.Vue.use(element_ui_1.DatePicker);
 vue_property_decorator_1.Vue.use(element_ui_1.Form);
 vue_property_decorator_1.Vue.use(element_ui_1.FormItem);
 vue_property_decorator_1.Vue.use(element_ui_1.Popover);
+vue_property_decorator_1.Vue.use(element_ui_1.Select);
+vue_property_decorator_1.Vue.use(element_ui_1.Option);
 
 var resource_1 = require("~/services/resource");
 
@@ -116758,13 +116830,16 @@ function (_super) {
     var _this = _super !== null && _super.apply(this, arguments) || this;
 
     _this.activeName = '';
-    _this.form = {};
     _this.statuses = [];
+    _this.users = [];
+    _this.assignee = '';
+    _this.dueDate = '';
     return _this;
   }
 
   SubtaskTableContextMenu.prototype.mounted = function () {
     this.statuses = resource_1.Resource.get('IssueStatus');
+    this.users = resource_1.Resource.get('User');
   };
 
   SubtaskTableContextMenu.prototype.update = function (params) {
@@ -116815,6 +116890,7 @@ function (_super) {
             _a.sent();
 
             this.statuses = resource_1.Resource.get('IssueStatus');
+            this.users = resource_1.Resource.get('User');
             return [2
             /*return*/
             ];
@@ -116838,7 +116914,7 @@ exports.default = SubtaskTableContextMenu;
     
         /* template */
         Object.assign($b8c32b, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-popover',{attrs:{"trigger":"click"}},[_c('el-collapse',{attrs:{"accordion":""},model:{value:(_vm.activeName),callback:function ($$v) {_vm.activeName=$$v},expression:"activeName"}},[_c('el-collapse-item',{attrs:{"name":"1"}},[_c('template',{slot:"title"},[_c('el-link',{attrs:{"type":"primary","underline":false,"href":"/"}},[_vm._v("Edit")])],1)],2),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"Status","name":"2"}},[_vm._l((_vm.statuses),function(status){return _c('el-row',[_c('el-button',{staticClass:"w-100",on:{"click":function($event){return _vm.update({status_id: status.id})}}},[_vm._v(_vm._s(status.name))])],1)}),_vm._v(" "),_c('el-button',{attrs:{"type":"text"},on:{"click":_vm.refreshResources}},[_vm._v("need refresh?")])],2),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"Assignee","name":"3"}},[_vm._v("\n      Not implement yet.\n    ")]),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"DueDate","name":"4"}},[_vm._v("\n      Not implement yet.\n    ")])],1),_vm._v(" "),_c('el-button',{attrs:{"slot":"reference","plain":"","round":"","icon":"el-icon-edit","size":"mini"},on:{"click":function($event){$event.stopPropagation();}},slot:"reference"})],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('el-popover',{attrs:{"trigger":"click"}},[_c('el-collapse',{attrs:{"accordion":""},model:{value:(_vm.activeName),callback:function ($$v) {_vm.activeName=$$v},expression:"activeName"}},[_c('el-collapse-item',{attrs:{"name":"1"}},[_c('template',{slot:"title"},[_c('el-link',{attrs:{"type":"primary","underline":false,"href":"/"}},[_vm._v("Edit")])],1)],2),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"Status","name":"2"}},[_vm._l((_vm.statuses),function(status){return _c('el-row',[_c('el-button',{staticClass:"w-100",on:{"click":function($event){return _vm.update({status_id: status.id})}}},[_vm._v(_vm._s(status.name))])],1)}),_vm._v(" "),_c('el-button',{attrs:{"type":"text"},on:{"click":_vm.refreshResources}},[_vm._v("need refresh?")])],2),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"Assignee","name":"3"}},[_c('el-select',{attrs:{"filterable":""},on:{"change":function($event){return _vm.update({assigned_to_id: _vm.assignee})}},model:{value:(_vm.assignee),callback:function ($$v) {_vm.assignee=$$v},expression:"assignee"}},_vm._l((_vm.users),function(user){return _c('el-option',{key:user.id,attrs:{"label":((user.firstname) + " " + (user.lastname)),"value":user.id}})}),1)],1),_vm._v(" "),_c('el-collapse-item',{attrs:{"title":"DueDate","name":"4"}},[_c('el-date-picker',{attrs:{"type":"date","placeholder":"Pick a day","clearable":false},on:{"change":function($event){_vm.update({due_date: _vm.dueDate.toLocaleDateString().replace(/\//g, '-')})}},model:{value:(_vm.dueDate),callback:function ($$v) {_vm.dueDate=$$v},expression:"dueDate"}})],1)],1),_vm._v(" "),_c('el-button',{attrs:{"slot":"reference","plain":"","round":"","icon":"el-icon-edit","size":"mini"},on:{"click":function($event){$event.stopPropagation();}},slot:"reference"})],1)}
 var staticRenderFns = []
 
           return {
@@ -118662,6 +118738,7 @@ exports.Issue = models_1.Issue;
 exports.IssueStatus = models_1.IssueStatus;
 exports.Project = models_1.Project;
 exports.Tracker = models_1.Tracker;
+exports.User = models_1.User;
 
 var resource_1 = require("./services/resource");
 
