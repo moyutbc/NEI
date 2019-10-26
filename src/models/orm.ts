@@ -1,10 +1,17 @@
 import { Redmine } from '~/gateways/redmine'
 
 export abstract class Orm {
-  private static redmine: Redmine
   private static format = 'json'
 
-  private static pluralize(noun: string) {
+  /**
+   * 継承しているクラスを取得する。
+   */
+  abstract getResourceClass(): any
+
+  /**
+   * 複数形に変化させる。
+   */
+  private static pluralize(noun: string): string {
     if ([/s$/, /x$/, /z$/, /sh$/, /ch$/].some(regex => regex.test(noun))) {
       return `${noun}es`
     }
@@ -14,7 +21,10 @@ export abstract class Orm {
     return `${noun}s`
   }
 
-  private static getResourceName() {
+  /**
+   * クラス名をリソース名に置き換える。
+   */
+  private static getResourceName(): string {
     return this.name
       .replace(/([A-Z])/g, ' $1')
       .split(' ')
@@ -23,6 +33,9 @@ export abstract class Orm {
       .join('_')
   }
 
+  /**
+   * クラスに対応するリソース名を返却する。
+   */
   public static getResourcesName() {
     return this.pluralize(this.getResourceName())
   }
@@ -31,6 +44,13 @@ export abstract class Orm {
     return id
       ? `/${this.getResourcesName()}/${id}.${this.format}`
       : `/${this.getResourcesName()}.${this.format}`
+  }
+
+  /**
+   * インスタンスのリソースパスを返却する。
+   */
+  private getResourcePath(): string {
+    return this.getResourcesPath(this.id)
   }
 
   public static getUrl(id?: number | string): string {
@@ -42,10 +62,7 @@ export abstract class Orm {
   }
 
   static async get(url: string, params = {}) {
-    if (!this.redmine) {
-      this.redmine = Redmine.instance
-    }
-    return await this.redmine.get(url, params)
+    return await Redmine.instance.get(url, params)
   }
 
   static async all(params = {}): Promise<Array<this>> {
@@ -59,10 +76,11 @@ export abstract class Orm {
   }
 
   static async where(conditions = {}): Promise<Array<this>> {
-    const tmpConditions = { limit: 100, offset: 0 }
-    Object.keys(conditions).forEach(
-      key => (tmpConditions[key] = conditions[key])
-    )
+    const tmpConditions = {
+      limit: 100,
+      offset: 0,
+      ...conditions
+    }
     const url = this.getResourcesPath()
     const results = []
 
@@ -91,5 +109,16 @@ export abstract class Orm {
       const tmp = res[this.getResourcesName()].map(elem => new this(elem))
       return arr.concat(tmp)
     }, results)
+  }
+
+  /**
+   * 更新
+   */
+  public async update(params: { [s: stirng]: any }) {
+    const url = this.getResourceClass().getResourcesPath(this.id)
+    return await Redmine.instance.put(url, params)
+  }
+
+  public destroy() {
   }
 }

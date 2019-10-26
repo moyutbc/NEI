@@ -42,11 +42,24 @@ export class Issue extends Orm implements FavItem {
     this.updated_on = obj.updated_on
   }
 
+  public getResourceClass(): Issue {
+    return Issue
+  }
+
   public static async where(conditions = {}): Promise<any> {
     // issues must be ordered by id.
     const conditionsWithSort = {
       sort: 'id:asc',
       ...conditions
+    }
+
+    // MEMO: idを指定したいときはidの代わりにissue_idを指定する。
+    if (conditionsWithSort['id']) {
+      if (Array.isArray(conditionsWithSort['id'])) {
+        conditionsWithSort['issue_id'] = conditionsWithSort['id'].join(',')
+      } else {
+        conditionsWithSort['issue_id'] = conditionsWithSort['id']
+      }
     }
     
     return await super.where(conditionsWithSort)
@@ -65,6 +78,10 @@ export class Issue extends Orm implements FavItem {
     const params = ids.map(id => `ids[]=${id}`).join('&')
     const uri = `/${resources}/bulk_edit?${params}`
     return encodeURI(uri)
+  }
+
+  public async update(params) {
+    return await super.update({ issue: params })
   }
 
   public favItemize(): { resource: string; href: string; innerText: string } {

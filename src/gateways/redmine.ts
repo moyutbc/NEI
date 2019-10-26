@@ -1,3 +1,7 @@
+/*
+ * RedmineのAPIを呼び出すときはこのクラスを経由して呼び出す。
+ * apiキーを保持するためにシングルトンを適用している。
+ */
 export class Redmine {
   private static _instance: Redmine
   private static apiKey: string
@@ -21,6 +25,16 @@ export class Redmine {
     return dom.querySelector('#content > div.box > pre').textContent
   }
 
+  /**
+   * GETメソッドのインターフェース
+   */
+  public async get(
+    url: string,
+    params?: { [s: string]: string }
+  ): Promise<string> {
+    return await Redmine._get(url, params)
+  }
+
   private static async _get(
     url: string,
     params?: { [s: string]: string }
@@ -35,10 +49,33 @@ export class Redmine {
     return await $.get(url, paramsWithKey)
   }
 
-  public async get(
+  /**
+   * PUTメソッドのインターフェース
+   */
+  public async put(
     url: string,
-    params?: { [s: string]: string }
-  ): Promise<string> {
-    return await Redmine._get(url, params)
+    params: { [s: string]: any }
+  ): Promise<any> {
+    return await Redmine._put(url, params)
+  }
+
+  private static async _put(
+    url: string,
+    params: { [s: string]: any }
+  ): Promise<any> {
+    if (!this.apiKey) {
+      this.apiKey = await this.fetchApiKey()
+    }
+    const paramsWithKey = {
+      key: this.apiKey,
+      ...params
+    }
+
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+
+    return await fetch(url, { method: 'PUT', headers: headers, body: JSON.stringify(paramsWithKey) })
   }
 }
