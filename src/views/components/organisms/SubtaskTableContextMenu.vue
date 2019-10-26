@@ -30,7 +30,13 @@
       </el-collapse-item>
 
       <el-collapse-item title="DueDate" name="4">
-        Not implement yet.
+        <el-date-picker
+          v-model="dueDate"
+          type="date"
+          placeholder="Pick a day"
+          :clearable="false"
+          @change="update({due_date: dueDate.toLocaleDateString().replace(/\//g, '-')})">
+        </el-date-picker>
       </el-collapse-item>
     </el-collapse>
 
@@ -48,12 +54,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Row, Col, Button, Collapse, CollapseItem, Form, FormItem, Popover, Select, Option } from 'element-ui';
+import { Row, Col, Button, Collapse, CollapseItem, DatePicker, Form, FormItem, Popover, Select, Option } from 'element-ui';
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Button)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
+Vue.use(DatePicker)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Popover)
@@ -71,6 +78,7 @@ export default class SubtaskTableContextMenu extends Vue {
   statuses = []
   users = []
   assignee = ''
+  dueDate = ''
 
   @Prop()
   public propIssues: Array<Issue>
