@@ -1,6 +1,6 @@
 import { AppController } from "~/controllers/app-controller";
 import { Redmine } from "./gateways/redmine";
-import { Issue, IssueStatus, Project, Tracker } from "./models";
+import { Issue, IssueStatus, Project, Tracker, User } from "./models";
 import { Resource } from "./services/resource"
 import { LocalStore } from "./utilities";
 
@@ -18,6 +18,7 @@ export {
   IssueStatus,
   Project,
   Tracker,
+  User,
   Resource,
   LocalStore
 };

@@ -17,7 +17,16 @@
       </el-collapse-item>
 
       <el-collapse-item title="Assignee" name="3">
-        Not implement yet.
+        <el-select
+          filterable
+          @change="update({assigned_to_id: assignee})"
+          v-model="assignee">
+          <el-option
+            v-for="user in users"
+            :key="user.id"
+            :label="`${user.firstname} ${user.lastname}`"
+            :value="user.id">
+          </el-select>
       </el-collapse-item>
 
       <el-collapse-item title="DueDate" name="4">
@@ -39,7 +48,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Row, Col, Button, Collapse, CollapseItem, Form, FormItem, Popover } from 'element-ui';
+import { Row, Col, Button, Collapse, CollapseItem, Form, FormItem, Popover, Select, Option } from 'element-ui';
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Button)
@@ -48,6 +57,8 @@ Vue.use(CollapseItem)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Popover)
+Vue.use(Select)
+Vue.use(Option)
 
 import _ from 'underscore/underscore-min.js';
 
@@ -57,16 +68,16 @@ import { Resource } from '~/services/resource'
 @Component
 export default class SubtaskTableContextMenu extends Vue {
   activeName = ''
-  form = {
-  }
-
   statuses = []
+  users = []
+  assignee = ''
 
   @Prop()
   public propIssues: Array<Issue>
 
   mounted() {
     this.statuses = Resource.get('IssueStatus')
+    this.users = Resource.get('User')
   }
 
   private async update(params) {
@@ -78,6 +89,7 @@ export default class SubtaskTableContextMenu extends Vue {
   private async refreshResources() {
     await Resource.pull()
     this.statuses = Resource.get('IssueStatus')
+    this.users = Resource.get('User')
   }
 }
 </script>

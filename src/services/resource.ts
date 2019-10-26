@@ -1,4 +1,4 @@
-import { IssueStatus, Project, Tracker } from '~/models'
+import { IssueStatus, Project, Tracker, User } from '~/models'
 import { LocalStore } from '~/utilities/local-store';
 
 /**
@@ -16,16 +16,18 @@ export class Resource {
    * 最新の情報を取得しキャッシュする。
    */
   public static async pull() {
+    const issueStatuses = await IssueStatus.all()
     const projects = await Project.all()
     const trackers = await Tracker.all()
-    const issueStatuses = await IssueStatus.all()
+    const users = await User.all()
 
     const now = new Date().toLocaleString()
     const resources = {
       updatedAt: now,
       Project: projects,
       Tracker: trackers,
-      IssueStatus: issueStatuses
+      IssueStatus: issueStatuses,
+      User: users
     }
 
     LocalStore.set('resources', resources)
