@@ -29,7 +29,7 @@ export class Issue extends Orm implements FavItem {
     this.status = obj.status
     this.priority = obj.priority
     this.author = obj.author
-    this.assigned_to = obj.assigned_to || obj.author
+    this.assigned_to = obj.assigned_to
     this.category = obj.category
     this.subject = obj.subject
     this.description = obj.description
