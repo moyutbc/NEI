@@ -10220,7 +10220,7 @@ function (_super) {
     _this.status = obj.status;
     _this.priority = obj.priority;
     _this.author = obj.author;
-    _this.assigned_to = obj.assigned_to || obj.author;
+    _this.assigned_to = obj.assigned_to;
     _this.category = obj.category;
     _this.subject = obj.subject;
     _this.description = obj.description;
