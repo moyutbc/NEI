@@ -119,6 +119,5 @@ export abstract class Orm {
     return await Redmine.instance.put(url, params)
   }
 
-  public destroy() {
-  }
+  public destroy() {}
 }

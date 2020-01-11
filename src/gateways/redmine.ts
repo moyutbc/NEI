@@ -52,10 +52,7 @@ export class Redmine {
   /**
    * PUTメソッドのインターフェース
    */
-  public async put(
-    url: string,
-    params: { [s: string]: any }
-  ): Promise<any> {
+  public async put(url: string, params: { [s: string]: any }): Promise<any> {
     return await Redmine._put(url, params)
   }
 
@@ -72,10 +69,14 @@ export class Redmine {
     }
 
     const headers = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     }
 
-    return await fetch(url, { method: 'PUT', headers: headers, body: JSON.stringify(paramsWithKey) })
+    return await fetch(url, {
+      method: 'PUT',
+      headers: headers,
+      body: JSON.stringify(paramsWithKey)
+    })
   }
 }

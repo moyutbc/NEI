@@ -8,6 +8,8 @@ import { Issue, IssueStatus } from '~/models'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
+import NewSubtaskTable from '~/views/components/molecules/SubtaskTable'
+
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 import ExecuteForm from '~/views/components/organisms/ExecuteForm'
 import IssuePageDrawer from '~/views/components/organisms/IssuePageDrawer'
@@ -53,13 +55,24 @@ export class IssuePage implements Page {
       // this.destroySubtasksTable()
       // this.createSubtasksTable()
 
-      const subtaskTable = new SubtaskTable({
-        el: '#issue_tree > form > table',
+      const tmp = document.createElement('div')
+      tmp.id = 'new-table'
+      document.querySelector('#issue_tree > form').insertAdjacentElement('beforeend', tmp)
+
+      const newSubtaskTable = new NewSubtaskTable({
+        el: '#issue_tree > form > #new-table',
         data: {
-          issues: this.subtasks,
-          issueStatuses: issueStatuses
+          issues: this.subtasks
         }
       })
+
+      // const subtaskTable = new SubtaskTable({
+      //   el: '#issue_tree > form > table',
+      //   data: {
+      //     issues: this.subtasks,
+      //     issueStatuses: issueStatuses
+      //   }
+      // })
     }
 
     const executeForm = new ExecuteForm({

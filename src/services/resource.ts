@@ -1,5 +1,5 @@
 import { IssueStatus, Project, Tracker, User } from '~/models'
-import { LocalStore } from '~/utilities/local-store';
+import { LocalStore } from '~/utilities/local-store'
 
 /**
  * ProjectやIssueStatusなどユーザーが定義したカスタム情報を管理するクラス
@@ -7,9 +7,7 @@ import { LocalStore } from '~/utilities/local-store';
 export class Resource {
   public static get(resourceName: string): Array<any> {
     const resources = LocalStore.get('resources')
-    return resources && resources[resourceName]
-      ? resources[resourceName]
-      : []
+    return resources && resources[resourceName] ? resources[resourceName] : []
   }
 
   /**

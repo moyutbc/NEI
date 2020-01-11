@@ -1,6 +1,6 @@
-import { AppController } from "~/controllers/app-controller";
+import { AppController } from "./controllers/app-controller";
 import { Redmine } from "./gateways/redmine";
-import { Issue, IssueStatus, Project, Tracker, User } from "./models";
+import * as models from "./models";
 import { Resource } from "./services/resource"
 import { LocalStore } from "./utilities";
 
@@ -13,12 +13,8 @@ locale.use(lang)
 AppController.dispatch(window.location.href);
 
 export {
+  ...models,
   Redmine,
-  Issue,
-  IssueStatus,
-  Project,
-  Tracker,
-  User,
   Resource,
   LocalStore
 };

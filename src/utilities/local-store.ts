@@ -13,7 +13,7 @@ export class LocalStore {
   public static get(keyStr?: string): void {
     let tmpLocalStorage = JSON.parse(localStorage.getItem(LocalStore.KEY)) || {}
 
-    if(!keyStr) {
+    if (!keyStr) {
       return tmpLocalStorage
     }
 
@@ -21,7 +21,9 @@ export class LocalStore {
 
     while (keys.length > 0) {
       const key = keys.shift()
-      if (!tmpLocalStorage[key]) { return null }
+      if (!tmpLocalStorage[key]) {
+        return null
+      }
       tmpLocalStorage = tmpLocalStorage[key]
     }
 
@@ -61,22 +63,22 @@ export class LocalStore {
    * @param {String} keyString 'config.issues-page.execute'
    */
   public static unset(keyStr: string) {
-   const keys = keyStr.split('.')
-   const tmpLocalStorage =
-     JSON.parse(localStorage.getItem(LocalStore.KEY)) || {}
-   let cursor = tmpLocalStorage
+    const keys = keyStr.split('.')
+    const tmpLocalStorage =
+      JSON.parse(localStorage.getItem(LocalStore.KEY)) || {}
+    let cursor = tmpLocalStorage
 
-   while (keys.length > 1) {
-     const key = keys.shift()
-     if (!cursor[key]) {
-       return
-     }
-     cursor = cursor[key]
-   }
+    while (keys.length > 1) {
+      const key = keys.shift()
+      if (!cursor[key]) {
+        return
+      }
+      cursor = cursor[key]
+    }
 
-   const key = keys.shift()
-   delete cursor[key]
+    const key = keys.shift()
+    delete cursor[key]
 
-   localStorage.setItem(LocalStore.KEY, JSON.stringify(tmpLocalStorage))
+    localStorage.setItem(LocalStore.KEY, JSON.stringify(tmpLocalStorage))
   }
 }

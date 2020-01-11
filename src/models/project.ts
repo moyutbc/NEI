@@ -8,7 +8,7 @@ export class Project extends Orm {
   description: string
   status: number
   is_public: boolean
-  parent: { id: number, name: string }
+  parent: { id: number; name: string }
   created_on: Dayjs
   updated_on: Dayjs
 

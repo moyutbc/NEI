@@ -61,7 +61,7 @@ export class Issue extends Orm implements FavItem {
         conditionsWithSort['issue_id'] = conditionsWithSort['id']
       }
     }
-    
+
     return await super.where(conditionsWithSort)
   }
 
