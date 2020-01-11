@@ -8,6 +8,7 @@
         v-if="show"
         :issues="issues"
       )
+
 </template>
 
 <script lang="ts">
@@ -24,6 +25,7 @@ export default class SubtaskTableCollapsable extends Vue {
   issues: Array<Issue>
 
   show: boolean = false
+
 }
 </script>
 
