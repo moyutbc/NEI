@@ -8,7 +8,7 @@ import { Issue, IssueStatus } from '~/models'
 import { SubtaskGanttChart } from '~/views/components/subtask-gantt-chart'
 import { SimpleSubtaskTable  } from '~/views/components/simple-subtask-table'
 
-import NewSubtaskTable from '~/views/components/molecules/SubtaskTable'
+import SubtaskTableCollapsable from '~/views/components/molecules/SubtaskTable/SubtaskTableCollapsable'
 
 import SubtaskTable from '~/views/components/organisms/SubtaskTable'
 import ExecuteForm from '~/views/components/organisms/ExecuteForm'
@@ -51,28 +51,16 @@ export class IssuePage implements Page {
     const issueStatuses = await IssueStatus.all()
 
     if (this.subtasks.length > 0) {
-      // this.createTimeline()
-      // this.destroySubtasksTable()
-      // this.createSubtasksTable()
-
       const tmp = document.createElement('div')
       tmp.id = 'new-table'
-      document.querySelector('#issue_tree > form').insertAdjacentElement('beforeend', tmp)
+      document.querySelector('#issue_tree').insertAdjacentElement('beforeend', tmp)
 
-      const newSubtaskTable = new NewSubtaskTable({
-        el: '#issue_tree > form > #new-table',
-        data: {
+      new SubtaskTableCollapsable({
+        el: '#new-table',
+        propsData: {
           issues: this.subtasks
         }
       })
-
-      // const subtaskTable = new SubtaskTable({
-      //   el: '#issue_tree > form > table',
-      //   data: {
-      //     issues: this.subtasks,
-      //     issueStatuses: issueStatuses
-      //   }
-      // })
     }
 
     const executeForm = new ExecuteForm({

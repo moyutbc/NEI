@@ -22,13 +22,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 import from '~/models'
 
 @Component
 export default class SubtaskTable extends Vue {
-  issues: Array<Issue> = []
+  @Prop({ type: Array, required: true })
+  issues: Array<Issue>
 
   checked: Array<number> = []
 
