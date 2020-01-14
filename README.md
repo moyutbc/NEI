@@ -20,7 +20,7 @@ extensions: [User JavaScript and CSS](https://chrome.google.com/webstore/detail/
 
 1. Right-click the `User Javascrit and Css` button, and '+ Add new'.
 
-1. Copy [javascript](https://raw.githubusercontent.com/moyutbc/momiji/master/build/dev/index.js) and [css](https://github.com/moyutbc/momiji/blob/master/build/dev/index.css), save.
+1. Copy [javascript](https://raw.githubusercontent.com/moyutbc/momiji/master/build/dev/index.js) and [css](https://raw.githubusercontent.com/moyutbc/momiji/master/build/dev/index.css), save.
 
 1. Go your redmine home page, you can see 'Momiji Home'.
 
