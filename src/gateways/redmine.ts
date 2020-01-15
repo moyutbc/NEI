@@ -6,7 +6,7 @@ export class Redmine {
   private static _instance: Redmine
   private static apiKey: string
 
-  public static origin(): string {
+  public static get origin(): string {
     return window.location.origin
   }
 

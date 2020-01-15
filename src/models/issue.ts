@@ -1,4 +1,5 @@
 import { Dayjs } from 'dayjs'
+import { Redmine } from '~/gateways/redmine'
 import { Project } from '~/models/project'
 import { Orm } from '~/models/orm'
 
@@ -19,7 +20,6 @@ export class Issue extends Orm implements FavItem {
   custom_fields: array<any>
   created_on: Dayjs
   updated_on: Dayjs
-  private static redmine: Redmine
 
   constructor(obj: any) {
     super()
@@ -90,5 +90,13 @@ export class Issue extends Orm implements FavItem {
       href: Issue.getUrl(this.id),
       innerText: `#${this.id} ${this.subject}`
     }
+  }
+
+  public get location(): string {
+    return [
+      Redmine.origin,
+      Issue.getResourcesName(),
+      this.id
+    ].join('/');
   }
 }

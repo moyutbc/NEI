@@ -46,13 +46,6 @@ export abstract class Orm {
       : `/${this.getResourcesName()}.${this.format}`
   }
 
-  /**
-   * インスタンスのリソースパスを返却する。
-   */
-  private getResourcePath(): string {
-    return this.getResourcesPath(this.id)
-  }
-
   public static getUrl(id?: number | string): string {
     let url = '/' + this.getResourcesName()
     if (id) {
@@ -119,5 +112,5 @@ export abstract class Orm {
     return await Redmine.instance.put(url, params)
   }
 
-  public destroy() {}
+  public destroy() { }
 }
