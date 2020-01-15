@@ -5,7 +5,20 @@
         tr
           th(style="display: none;")
           th Subject
-          th Status
+          th
+            | Status
+            a.icon.icon-settings#subtaskTableHeaderStatus(@click.stop="showStatusFilter")
+            subtask-table-filter(
+              ref="subtaskTableFilter"
+              :prop-style="statusPanelStyle"
+              )
+              div.subtask-table-panel-inner
+                ul
+                  li(v-for="(status, index) in statuses")
+                    input(type="checkbox" :value="status.id" v-model="displayStatusIds")
+                    span
+                      | {{ status.name }}
+
           th Assigned to
           th
             | Due Date
@@ -14,7 +27,7 @@
           th Actions
       tbody
         tr(
-          v-for="(issue, index) in innerIssues"
+          v-for="(issue, index) in displayIssues"
           @click="checkOrUncheck(issue)"
           :class="trClass(issue)"
           )
@@ -42,13 +55,15 @@
 
 <script lang="ts">
 import dayjs from 'dayjs'
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 
 import from "~/models";
 import SubtaskTableContextMenu from "./SubtaskTableContextMenu";
+import SubtaskTableFilter from "./SubtaskTableFilter";
+import { Status } from '~/types';
 
 @Component({
-  components: { SubtaskTableContextMenu }
+  components: { SubtaskTableContextMenu, SubtaskTableFilter }
 })
 export default class SubtaskTable extends Vue {
   @Prop({ type: Array, required: true })
@@ -57,6 +72,12 @@ export default class SubtaskTable extends Vue {
   innerIssues: Array<Issue> = [];
 
   checked: Array<number> = [];
+  displayStatusIds: Array<Status> = [];
+
+  statusPanelStyle = {
+    left: "0px",
+    top: "0px"
+  }
   contextMenu: boolean = false;
   contextMenuStyle = {
     left: "0px",
@@ -65,6 +86,9 @@ export default class SubtaskTable extends Vue {
 
   mounted() {
     this.innerIssues = this.issues.map(i => i.clone())
+    this.displayStatusIds = Array.from(
+      new Set(this.statuses.map(s => s.id))
+    );
     this.addClickListener();
   }
 
@@ -84,6 +108,17 @@ export default class SubtaskTable extends Vue {
       .querySelector("#subtask-table")
       .removeEventListener("contextmenu", this.showContextMenu);
     document.body.removeEventListener("click", this.hideContextMenu);
+  }
+
+  private showStatusFilter(evt) {
+    const target = document.querySelector('#subtaskTableHeaderStatus')
+    const pageX = target?.getBoundingClientRect()?.left + window.scrollX;
+    const pageY = target?.getBoundingClientRect()?.top + window.scrollY;
+    this.statusPanelStyle = {
+      left: pageX + "px",
+      top: pageY + "px"
+    }
+    this.$refs['subtaskTableFilter'].show()
   }
 
   private showContextMenu(evt) {
@@ -138,5 +173,33 @@ export default class SubtaskTable extends Vue {
       return comp;
     })
   }
+
+  private get statuses(): Array<Status> {
+    return this.innerIssues
+      .map(i => JSON.parse(JSON.stringify(i.status)))
+      .reduce((arr, status) => {
+        if (!arr.map(e => e.id).includes(status.id)) {
+          arr.push(status);
+        }
+        return arr;
+      }, [])
+  }
+
+  private get displayIssues(): Array<Issue> {
+    return this.innerIssues.filter(i => this.displayStatusIds.includes(i.status.id))
+  }
 }
 </script>
+
+<style scoped lang="scss">
+.subtask-table-panel-inner {
+  ul {
+    padding-inline-start: 0px;
+
+    li {
+      list-style: none;
+      text-align: left;
+    }
+  }
+}
+</style>
