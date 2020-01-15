@@ -1,9 +1,20 @@
 <template lang="pug">
   div
     table#subtask-table.list.issues.odd-even
+      thead
+        tr
+          th(style="display: none;")
+          th Subject
+          th Status
+          th Assigned to
+          th
+            | Due Date
+            button(@click="sortBy('due_date', 'desc')") ↑
+            button(@click="sortBy('due_date', 'asc')") ↓
+          th Actions
       tbody
         tr(
-          v-for="(issue, index) in issues"
+          v-for="(issue, index) in innerIssues"
           @click="checkOrUncheck(issue)"
           :class="trClass(issue)"
           )
@@ -30,6 +41,7 @@
 </template>
 
 <script lang="ts">
+import dayjs from 'dayjs'
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 import from "~/models";
@@ -42,6 +54,8 @@ export default class SubtaskTable extends Vue {
   @Prop({ type: Array, required: true })
   issues: Array<Issue>;
 
+  innerIssues: Array<Issue> = [];
+
   checked: Array<number> = [];
   contextMenu: boolean = false;
   contextMenuStyle = {
@@ -50,6 +64,7 @@ export default class SubtaskTable extends Vue {
   };
 
   mounted() {
+    this.innerIssues = this.issues.map(i => i.clone())
     this.addClickListener();
   }
 
@@ -114,6 +129,14 @@ export default class SubtaskTable extends Vue {
    */
   private overdue(date: string): boolean {
     return new Date(date) < new Date();
+  }
+
+  private sortBy(key: string, order: string): void {
+    this.innerIssues.sort((a, b) => {
+      let comp = dayjs(a[key] || 0) - dayjs(b[key] || 0);
+      comp = (order === 'desc') ? -1 * comp : comp
+      return comp;
+    })
   }
 }
 </script>

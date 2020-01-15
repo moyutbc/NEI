@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import { Redmine } from '~/gateways/redmine'
 import { Project } from '~/models/project'
 import { Orm } from '~/models/orm'
@@ -10,6 +10,7 @@ export class Issue extends Orm implements FavItem {
   status: any
   priority: any
   author: any
+  assigned_to: any
   category: any
   subject: string
   description: string
@@ -17,7 +18,7 @@ export class Issue extends Orm implements FavItem {
   due_date: Dayjs
   done_ratio: number
   estimated_hours: number
-  custom_fields: array<any>
+  custom_fields: Array<any>
   created_on: Dayjs
   updated_on: Dayjs
 
@@ -34,6 +35,7 @@ export class Issue extends Orm implements FavItem {
     this.subject = obj.subject
     this.description = obj.description
     this.start_date = obj.start_date
+    // this.due_date = dayjs(obj.due_date)
     this.due_date = obj.due_date
     this.done_ratio = obj.done_ratio
     this.estimated_hours = obj.estimated_hours
@@ -98,5 +100,19 @@ export class Issue extends Orm implements FavItem {
       Issue.getResourcesName(),
       this.id
     ].join('/');
+  }
+
+  public attrs(): Object {
+    const that = this;
+    const obj = {};
+    Object.keys(this).forEach(key => {
+      if (!that[key]) { return; }
+      obj[key] = JSON.parse(JSON.stringify(that[key]))
+    });
+    return obj;
+  }
+
+  public clone(): Issue {
+    return new Issue(this.attrs())
   }
 }
