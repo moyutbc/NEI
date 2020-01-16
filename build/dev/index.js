@@ -11069,6 +11069,100 @@ var staticRenderFns = []
           };
         })());
       
+},{"vue-property-decorator":"oHlX"}],"SsDR":[function(require,module,exports) {
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __decorate = this && this.__decorate || function (decorators, target, key, desc) {
+  var c = arguments.length,
+      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+      d;
+  if ((typeof Reflect === "undefined" ? "undefined" : _typeof(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+  }
+  return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var vue_property_decorator_1 = require("vue-property-decorator");
+
+var SubtaskTableContextMenu =
+/** @class */
+function (_super) {
+  __extends(SubtaskTableContextMenu, _super);
+
+  function SubtaskTableContextMenu() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.isDown = true;
+    return _this;
+  }
+
+  SubtaskTableContextMenu.prototype.onClick = function () {
+    if (this.isDown) {
+      this.$emit("up");
+    } else {
+      this.$emit("down");
+    }
+
+    this.isDown = !this.isDown;
+  };
+
+  SubtaskTableContextMenu = __decorate([vue_property_decorator_1.Component], SubtaskTableContextMenu);
+  return SubtaskTableContextMenu;
+}(vue_property_decorator_1.Vue);
+
+exports.default = SubtaskTableContextMenu;
+        var $a771d5 = exports.default || module.exports;
+      
+      if (typeof $a771d5 === 'function') {
+        $a771d5 = $a771d5.options;
+      }
+    
+        /* template */
+        Object.assign($a771d5, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{on:{"click":_vm.onClick}},[(_vm.isDown)?_c('img',{attrs:{"src":'/images/arrow_down.png',"alt":"↓"}}):_c('img',{attrs:{"src":'/images/arrow_up.png',"alt":"↑"}})])}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
 },{"vue-property-decorator":"oHlX"}],"oALX":[function(require,module,exports) {
 "use strict";
 
@@ -11129,6 +11223,8 @@ var vue_property_decorator_1 = require("vue-property-decorator");
 var SubtaskTableContextMenu_1 = __importDefault(require("./SubtaskTableContextMenu"));
 
 var SubtaskTableFilter_1 = __importDefault(require("./SubtaskTableFilter"));
+
+var SubtaskTableSortCaret_1 = __importDefault(require("./SubtaskTableSortCaret"));
 
 var SubtaskTable =
 /** @class */
@@ -11285,7 +11381,8 @@ function (_super) {
   SubtaskTable = __decorate([vue_property_decorator_1.Component({
     components: {
       SubtaskTableContextMenu: SubtaskTableContextMenu_1.default,
-      SubtaskTableFilter: SubtaskTableFilter_1.default
+      SubtaskTableFilter: SubtaskTableFilter_1.default,
+      SubtaskTableSortCaret: SubtaskTableSortCaret_1.default
     }
   })], SubtaskTable);
   return SubtaskTable;
@@ -11300,7 +11397,7 @@ exports.default = SubtaskTable;
     
         /* template */
         Object.assign($620a4f, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('table',{staticClass:"list issues odd-even",attrs:{"id":"subtask-table"}},[_c('thead',[_c('tr',[_c('th',{staticStyle:{"display":"none"}}),_c('th',[_vm._v("Subject")]),_c('th',[_vm._v("Status"),_c('a',{staticClass:"icon icon-settings",attrs:{"id":"subtaskTableHeaderStatus"},on:{"click":function($event){$event.stopPropagation();return _vm.showStatusFilter($event)}}}),_c('subtask-table-filter',{ref:"subtaskTableFilter",attrs:{"prop-style":_vm.statusPanelStyle}},[_c('div',{staticClass:"subtask-table-panel-inner"},[_c('ul',_vm._l((_vm.statuses),function(status,index){return _c('li',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.displayStatusIds),expression:"displayStatusIds"}],attrs:{"type":"checkbox"},domProps:{"value":status.id,"checked":Array.isArray(_vm.displayStatusIds)?_vm._i(_vm.displayStatusIds,status.id)>-1:(_vm.displayStatusIds)},on:{"change":function($event){var $$a=_vm.displayStatusIds,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=status.id,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.displayStatusIds=$$a.concat([$$v]))}else{$$i>-1&&(_vm.displayStatusIds=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.displayStatusIds=$$c}}}}),_c('span',[_vm._v(_vm._s(status.name))])])}),0)])])],1),_c('th',[_vm._v("Assigned to")]),_c('th',[_vm._v("Due Date"),_c('button',{on:{"click":function($event){return _vm.sortBy('due_date', 'desc')}}},[_vm._v("↑")]),_c('button',{on:{"click":function($event){return _vm.sortBy('due_date', 'asc')}}},[_vm._v("↓")])]),_c('th',[_vm._v("Actions")])])]),_c('tbody',_vm._l((_vm.displayIssues),function(issue,index){return _c('tr',{class:_vm.trClass(issue),on:{"click":function($event){return _vm.checkOrUncheck(issue)}}},[_vm._m(0,true),_c('td',{staticClass:"subject"},[_c('a',{staticClass:"issue",attrs:{"href":("" + (issue.location))},on:{"click":function($event){$event.stopPropagation();}}},[_vm._v(_vm._s(((issue.tracker.name) + " " + (issue.id))))]),_vm._v(_vm._s((": " + (issue.subject))))]),_c('td',{staticClass:"status"},[_vm._v(_vm._s(issue.status.name))]),_c('td',{staticClass:"assigned_to"},[_vm._v(_vm._s(issue.assigned_to ? issue.assigned_to.name : ''))]),_c('td',{staticClass:"due_date"},[_vm._v(_vm._s(issue.due_date))]),_vm._m(1,true)])}),0)]),_c('subtask-table-context-menu',{directives:[{name:"show",rawName:"v-show",value:(_vm.contextMenu),expression:"contextMenu"}],ref:"SubtaskTableContextMenu",attrs:{"prop-style":_vm.contextMenuStyle}})],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('table',{staticClass:"list issues odd-even",attrs:{"id":"subtask-table"}},[_c('thead',[_c('tr',[_c('th',{staticStyle:{"display":"none"}}),_c('th',[_vm._v("Subject")]),_c('th',[_vm._v("Status"),_c('a',{staticClass:"icon icon-settings",attrs:{"id":"subtaskTableHeaderStatus"},on:{"click":function($event){$event.stopPropagation();return _vm.showStatusFilter($event)}}}),_c('subtask-table-filter',{ref:"subtaskTableFilter",attrs:{"prop-style":_vm.statusPanelStyle}},[_c('div',{staticClass:"subtask-table-panel-inner"},[_c('ul',_vm._l((_vm.statuses),function(status,index){return _c('li',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.displayStatusIds),expression:"displayStatusIds"}],attrs:{"type":"checkbox"},domProps:{"value":status.id,"checked":Array.isArray(_vm.displayStatusIds)?_vm._i(_vm.displayStatusIds,status.id)>-1:(_vm.displayStatusIds)},on:{"change":function($event){var $$a=_vm.displayStatusIds,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=status.id,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.displayStatusIds=$$a.concat([$$v]))}else{$$i>-1&&(_vm.displayStatusIds=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.displayStatusIds=$$c}}}}),_c('span',[_vm._v(_vm._s(status.name))])])}),0)])])],1),_c('th',[_vm._v("Assigned to")]),_c('th',[_vm._v("Due Date"),_c('subtask-table-sort-caret',{on:{"up":function($event){return _vm.sortBy('due_date', 'asc')},"down":function($event){return _vm.sortBy('due_date', 'desc')}}})],1),_c('th',[_vm._v("Actions")])])]),_c('tbody',_vm._l((_vm.displayIssues),function(issue,index){return _c('tr',{class:_vm.trClass(issue),on:{"click":function($event){return _vm.checkOrUncheck(issue)}}},[_vm._m(0,true),_c('td',{staticClass:"subject"},[_c('a',{staticClass:"issue",attrs:{"href":("" + (issue.location))},on:{"click":function($event){$event.stopPropagation();}}},[_vm._v(_vm._s(((issue.tracker.name) + " " + (issue.id))))]),_vm._v(_vm._s((": " + (issue.subject))))]),_c('td',{staticClass:"status"},[_vm._v(_vm._s(issue.status.name))]),_c('td',{staticClass:"assigned_to"},[_vm._v(_vm._s(issue.assigned_to ? issue.assigned_to.name : ''))]),_c('td',{staticClass:"due_date"},[_vm._v(_vm._s(issue.due_date))]),_vm._m(1,true)])}),0)]),_c('subtask-table-context-menu',{directives:[{name:"show",rawName:"v-show",value:(_vm.contextMenu),expression:"contextMenu"}],ref:"SubtaskTableContextMenu",attrs:{"prop-style":_vm.contextMenuStyle}})],1)}
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"checkbox"},[_c('input',{attrs:{"type":"checkbox"}})])},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('td',{staticClass:"buttons"},[_c('a',{staticClass:"icon-only icon-actions js-contextmenu",attrs:{"href":"#"}},[_vm._v("Actions")])])}]
 
           return {
@@ -11312,7 +11409,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
           };
         })());
       
-},{"dayjs":"dZYI","vue-property-decorator":"oHlX","./SubtaskTableContextMenu":"m9lN","./SubtaskTableFilter":"Mm2g"}],"dBhI":[function(require,module,exports) {
+},{"dayjs":"dZYI","vue-property-decorator":"oHlX","./SubtaskTableContextMenu":"m9lN","./SubtaskTableFilter":"Mm2g","./SubtaskTableSortCaret":"SsDR"}],"dBhI":[function(require,module,exports) {
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
