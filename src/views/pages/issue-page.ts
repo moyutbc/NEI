@@ -1,6 +1,3 @@
-import { DataSet, Timeline } from 'vis-timeline'
-import 'vis-timeline/dist/vis-timeline-graph2d.css'
-
 import { Page } from '~/types/index'
 import { Issue, IssueStatus } from '~/models'
 

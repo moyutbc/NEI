@@ -15,7 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^12.12.24",
-    "@types/vis": "^4.21.19",
     "dayjs": "^1.8.19",
     "element-ui": "^2.13.0",
     "hogan.js": "^3.0.2",
@@ -26,7 +25,6 @@
     "tippy.js": "^4.3.5",
     "typescript": "^3.7.4",
     "underscore": "^1.9.2",
-    "vis-timeline": "^5.1.0",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
     "vue-property-decorator": "^8.3.0"
