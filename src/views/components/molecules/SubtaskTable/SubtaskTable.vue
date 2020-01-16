@@ -22,8 +22,10 @@
           th Assigned to
           th
             | Due Date
-            button(@click="sortBy('due_date', 'desc')") ↑
-            button(@click="sortBy('due_date', 'asc')") ↓
+            subtask-table-sort-caret(
+              @up="sortBy('due_date', 'asc')"
+              @down="sortBy('due_date', 'desc')"
+              )
           th Actions
       tbody
         tr(
@@ -60,10 +62,15 @@ import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import from "~/models";
 import SubtaskTableContextMenu from "./SubtaskTableContextMenu";
 import SubtaskTableFilter from "./SubtaskTableFilter";
+import SubtaskTableSortCaret from "./SubtaskTableSortCaret";
 import { Status } from '~/types';
 
 @Component({
-  components: { SubtaskTableContextMenu, SubtaskTableFilter }
+  components: {
+    SubtaskTableContextMenu,
+    SubtaskTableFilter,
+    SubtaskTableSortCaret
+  }
 })
 export default class SubtaskTable extends Vue {
   @Prop({ type: Array, required: true })
