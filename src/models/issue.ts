@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { Redmine } from '~/gateways/redmine'
 import { Project } from '~/models/project'
-import { Orm } from '~/models/orm'
+import { Orm } from './orm'
 
 export class Issue extends Orm implements FavItem {
   id: number
@@ -46,6 +46,10 @@ export class Issue extends Orm implements FavItem {
 
   public getResourceClass(): Issue {
     return Issue
+  }
+
+  static get className(): string {
+    return 'Issue'
   }
 
   public static async where(conditions = {}): Promise<any> {

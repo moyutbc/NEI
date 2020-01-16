@@ -1,11 +1,11 @@
-import { Orm } from '~/models/orm'
+import { Orm } from './orm'
 
 export class User extends Orm {
   admin: boolean
-  created_on: 
+  created_on: string
   firstname: string
   id: number
-  last_login_on:
+  last_login_on: string
   lastname: string
   login: string
   mail: string
@@ -20,5 +20,13 @@ export class User extends Orm {
     this.lastname = obj.lastname
     this.login = obj.login
     this.mail = obj.mail
+  }
+
+  getResourceClass() {
+    return User
+  }
+
+  static get className(): string {
+    return 'User'
   }
 }

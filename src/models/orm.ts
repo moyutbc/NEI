@@ -8,6 +8,8 @@ export abstract class Orm {
    */
   abstract getResourceClass(): any
 
+  static get className(): string { }
+
   /**
    * 複数形に変化させる。
    */
@@ -25,7 +27,7 @@ export abstract class Orm {
    * クラス名をリソース名に置き換える。
    */
   private static getResourceName(): string {
-    return this.name
+    return this.className
       .replace(/([A-Z])/g, ' $1')
       .split(' ')
       .filter(el => el.length > 0)

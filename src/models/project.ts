@@ -1,5 +1,5 @@
 import { Dayjs } from 'dayjs'
-import { Orm } from '~/models/orm'
+import { Orm } from './orm'
 
 export class Project extends Orm {
   id: number
@@ -23,5 +23,13 @@ export class Project extends Orm {
     this.updated_on = obj.updated_on
     this.is_public = obj.is_public
     this.parent = obj.parent
+  }
+
+  static get className(): string {
+    return 'Project'
+  }
+
+  getResourceClass() {
+    return Project
   }
 }

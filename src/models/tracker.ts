@@ -1,5 +1,5 @@
-import { Dayjs } from 'dayjs'
-import { Orm } from '~/models/orm'
+import { Orm } from './orm'
+import { Status } from '../types'
 
 export class Tracker extends Orm {
   id: number
@@ -11,5 +11,16 @@ export class Tracker extends Orm {
     this.id = obj.id
     this.name = obj.name
     this.default_status = obj.default_status
+  }
+
+  getResourceClass() {
+    throw new Error("Method not implemented.")
+  }
+  static getResourceClass() {
+    return Tracker
+  }
+
+  static get className(): string {
+    return 'Tracker'
   }
 }
