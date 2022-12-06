@@ -18,7 +18,7 @@
     "dayjs": "^1.8.19",
     "element-ui": "^2.13.0",
     "hogan.js": "^3.0.2",
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "parcel": "^1.12.4",
     "readme-md-generator": "^0.6.4",
     "serialize-to-js": ">=3.0.1",
