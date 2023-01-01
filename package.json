@@ -19,7 +19,7 @@
     "element-ui": "^2.13.0",
     "hogan.js": "^3.0.2",
     "http-server": "^0.11.1",
-    "parcel": "^1.12.4",
+    "parcel": "^2.8.2",
     "readme-md-generator": "^0.6.4",
     "serialize-to-js": ">=3.0.1",
     "tippy.js": "^4.3.5",
@@ -43,7 +43,7 @@
     "sass": "^1.24.4",
     "ts-jest": "^24.3.0",
     "ts-node": "^8.6.1",
-    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths": "^3.10.1",
     "vue-template-compiler": "^2.6.11"
   },
   "jest": {
